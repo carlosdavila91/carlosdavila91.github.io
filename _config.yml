@@ -18,9 +18,9 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Welcome to Carlos Davila's portfolio!
+title: Carlos Dávila
 description: Here you'll find a little bit of everything I've been working on.
-logo: "assets/mosaic_landscape.jpg"
+logo: "assets/img/mosaic_landscape.jpg"
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
