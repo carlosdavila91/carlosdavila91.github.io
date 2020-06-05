@@ -3,26 +3,28 @@
 
 @import "{{ site.theme }}";
 
+#header h1 {
+  margin:0;
+}
+
 ul {
   margin:0 0 10px;
 }
 
-#myBtn {
-  display: none; /* Hidden by default */
-  position: fixed; /* Fixed/sticky position */
-  bottom: 20px; /* Place the button at the bottom of the page */
-  right: 30px; /* Place the button 30px from the right */
-  z-index: 99; /* Make sure it does not overlap */
-  border: none; /* Remove borders */
-  outline: none; /* Remove outline */
-  background-color: red; /* Set a background color */
-  color: white; /* Text color */
-  cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px; /* Some padding */
-  border-radius: 10px; /* Rounded corners */
-  font-size: 18px; /* Increase font size */
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#069;
+	border:25px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
 }
 
-#myBtn:hover {
-  background-color: #555; /* Add a dark-grey background on hover */
+.button-text{
+  margin-top: 10px;
+  color:#FFF;
+  scroll-behavior: smooth;
 }

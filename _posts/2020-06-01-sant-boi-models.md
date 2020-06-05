@@ -63,11 +63,11 @@ $$RMSE(X,h)=\sqrt{\frac{1}{m}\sum^m_{i=1}(h(x^{(i)}) - y^{(i)})^2}$$
 
 Where,
 
-* $X$ is the matrix containing all the features, excluding the label or target variable
-* $h$ is the hypothesis, i.e., the model function
-* $m$ is the length of the dataset, i.e., the number of instances or builgings in it
-* $x^{(i)}$ is a vector of all the feature values (excluding the label) of the $i^{th}$ instance in the dataset. Hence, $h(x^{(i)})$ gives us the "predicted $y$"
-* $y$ is the real target value
+* $$ X $$ is the matrix containing all the features, excluding the label or target variable
+* $$ h $$ is the hypothesis, i.e., the model function
+* $$ m $$ is the length of the dataset, i.e., the number of instances or builgings in it
+* $$ x^{(i)} $$ is a vector of all the feature values (excluding the label) of the $$ i^{th} $$ instance in the dataset. Hence, $$ h(x^{(i)}) $$ gives us the "predicted $$ y $$"
+* $$ y $$ is the real target value
 
 This performance measure imputes higher weight for large errors.
 
@@ -184,21 +184,7 @@ buildings.head()
       <th>X Coord</th>
       <th>Y Coord</th>
       <th>District</th>
-      <th>Year</th>
-      <th>Main Orientation</th>
-      <th>GF Usage</th>
-      <th>Roof Surface</th>
-      <th>Facade Surface</th>
-      <th>Openings Surface</th>
-      <th>Wrapping Surface</th>
-      <th>Party Wall Surface</th>
-      <th>Contact w/Terrain Surface</th>
-      <th>Type of Roof</th>
-      <th>Type of Opening</th>
-      <th>Type of Party Wall</th>
-      <th>Type of Facade</th>
-      <th>Number of Floors</th>
-      <th>Number of Courtyards</th>
+      <th>...</th>
       <th>Number of Dwellings</th>
       <th>Heat Demand</th>
     </tr>
@@ -209,21 +195,7 @@ buildings.head()
       <td>2.032087</td>
       <td>41.348370</td>
       <td>Marianao</td>
-      <td>1977</td>
-      <td>E</td>
-      <td>Commercial</td>
-      <td>165.43</td>
-      <td>208.50</td>
-      <td>56.1150</td>
-      <td>1473.28</td>
-      <td>150.9</td>
-      <td>150.00</td>
-      <td>C2</td>
-      <td>H4</td>
-      <td>M2</td>
-      <td>F3</td>
-      <td>5</td>
-      <td>1</td>
+      <td>...</td>
       <td>5</td>
       <td>44.251546</td>
     </tr>
@@ -232,21 +204,7 @@ buildings.head()
       <td>2.032074</td>
       <td>41.348412</td>
       <td>Marianao</td>
-      <td>1978</td>
-      <td>W</td>
-      <td>Commercial</td>
-      <td>417.41</td>
-      <td>547.35</td>
-      <td>218.9400</td>
-      <td>2524.31</td>
-      <td>36.6</td>
-      <td>420.00</td>
-      <td>C2</td>
-      <td>H3</td>
-      <td>M2</td>
-      <td>F3</td>
-      <td>5</td>
-      <td>2</td>
+      <td>...</td>
       <td>19</td>
       <td>38.328312</td>
     </tr>
@@ -255,21 +213,7 @@ buildings.head()
       <td>2.032024</td>
       <td>41.348669</td>
       <td>Marianao</td>
-      <td>1976</td>
-      <td>E</td>
-      <td>Commercial</td>
-      <td>202.00</td>
-      <td>282.00</td>
-      <td>112.8000</td>
-      <td>1637.97</td>
-      <td>108.9</td>
-      <td>202.07</td>
-      <td>C2</td>
-      <td>H3</td>
-      <td>M2</td>
-      <td>F3</td>
-      <td>5</td>
-      <td>2</td>
+      <td>...</td>
       <td>14</td>
       <td>58.794629</td>
     </tr>
@@ -278,21 +222,7 @@ buildings.head()
       <td>2.043332</td>
       <td>41.338324</td>
       <td>Vinyets</td>
-      <td>1959</td>
-      <td>NW</td>
-      <td>Dwelling</td>
-      <td>96.00</td>
-      <td>148.80</td>
-      <td>38.4024</td>
-      <td>489.60</td>
-      <td>0.0</td>
-      <td>96.00</td>
-      <td>C1</td>
-      <td>H3</td>
-      <td>0</td>
-      <td>F1</td>
-      <td>3</td>
-      <td>0</td>
+      <td>...</td>
       <td>2</td>
       <td>126.321738</td>
     </tr>
@@ -301,21 +231,7 @@ buildings.head()
       <td>2.043382</td>
       <td>41.338281</td>
       <td>Vinyets</td>
-      <td>1958</td>
-      <td>NE</td>
-      <td>Dwelling</td>
-      <td>45.00</td>
-      <td>61.38</td>
-      <td>18.4170</td>
-      <td>418.31</td>
-      <td>0.0</td>
-      <td>80.00</td>
-      <td>C1</td>
-      <td>H4</td>
-      <td>0</td>
-      <td>F1</td>
-      <td>2</td>
-      <td>1</td>
+      <td>...</td>
       <td>2</td>
       <td>69.562085</td>
     </tr>
@@ -413,15 +329,7 @@ buildings.describe()
       <th></th>
       <th>X Coord</th>
       <th>Y Coord</th>
-      <th>Year</th>
-      <th>Roof Surface</th>
-      <th>Facade Surface</th>
-      <th>Openings Surface</th>
-      <th>Wrapping Surface</th>
-      <th>Party Wall Surface</th>
-      <th>Contact w/Terrain Surface</th>
-      <th>Number of Floors</th>
-      <th>Number of Courtyards</th>
+      <th>...</th>
       <th>Number of Dwellings</th>
       <th>Heat Demand</th>
     </tr>
@@ -431,15 +339,7 @@ buildings.describe()
       <th>count</th>
       <td>746.000000</td>
       <td>746.000000</td>
-      <td>814.000000</td>
-      <td>814.000000</td>
-      <td>814.000000</td>
-      <td>814.000000</td>
-      <td>814.000000</td>
-      <td>814.000000</td>
-      <td>814.000000</td>
-      <td>814.000000</td>
-      <td>814.000000</td>
+      <td>...</td>
       <td>814.000000</td>
       <td>814.000000</td>
     </tr>
@@ -447,15 +347,7 @@ buildings.describe()
       <th>mean</th>
       <td>2.037112</td>
       <td>41.344455</td>
-      <td>1958.713759</td>
-      <td>188.012064</td>
-      <td>283.197881</td>
-      <td>92.051687</td>
-      <td>1174.339019</td>
-      <td>89.446564</td>
-      <td>191.163845</td>
-      <td>3.819410</td>
-      <td>1.067568</td>
+      <td>...</td>
       <td>8.509828</td>
       <td>78.686759</td>
     </tr>
@@ -463,15 +355,7 @@ buildings.describe()
       <th>std</th>
       <td>0.005807</td>
       <td>0.004975</td>
-      <td>24.095145</td>
-      <td>162.277031</td>
-      <td>346.681371</td>
-      <td>154.381926</td>
-      <td>991.088501</td>
-      <td>144.038287</td>
-      <td>166.748749</td>
-      <td>1.811693</td>
-      <td>1.209477</td>
+      <td>...</td>
       <td>10.797443</td>
       <td>41.569118</td>
     </tr>
@@ -479,15 +363,7 @@ buildings.describe()
       <th>min</th>
       <td>2.028457</td>
       <td>41.334829</td>
-      <td>1700.000000</td>
-      <td>30.080000</td>
-      <td>14.280000</td>
-      <td>2.570000</td>
-      <td>150.920000</td>
-      <td>0.000000</td>
-      <td>38.610000</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
+      <td>...</td>
       <td>1.000000</td>
       <td>5.977362</td>
     </tr>
@@ -495,15 +371,7 @@ buildings.describe()
       <th>25%</th>
       <td>2.032491</td>
       <td>41.339325</td>
-      <td>1958.000000</td>
-      <td>91.000000</td>
-      <td>77.334300</td>
-      <td>18.899490</td>
-      <td>494.850000</td>
-      <td>0.000000</td>
-      <td>93.812500</td>
-      <td>2.000000</td>
-      <td>0.000000</td>
+      <td>...</td>
       <td>1.000000</td>
       <td>48.330863</td>
     </tr>
@@ -511,15 +379,7 @@ buildings.describe()
       <th>50%</th>
       <td>2.034446</td>
       <td>41.346671</td>
-      <td>1967.000000</td>
-      <td>129.565000</td>
-      <td>157.920000</td>
-      <td>40.266405</td>
-      <td>851.655000</td>
-      <td>33.985500</td>
-      <td>131.500000</td>
-      <td>4.000000</td>
-      <td>1.000000</td>
+      <td>...</td>
       <td>4.000000</td>
       <td>69.391495</td>
     </tr>
@@ -527,15 +387,7 @@ buildings.describe()
       <th>75%</th>
       <td>2.043433</td>
       <td>41.349227</td>
-      <td>1973.000000</td>
-      <td>224.587500</td>
-      <td>344.475000</td>
-      <td>94.001554</td>
-      <td>1497.847500</td>
-      <td>117.810000</td>
-      <td>225.532500</td>
-      <td>5.000000</td>
-      <td>2.000000</td>
+      <td>...</td>
       <td>12.000000</td>
       <td>99.243290</td>
     </tr>
@@ -543,15 +395,7 @@ buildings.describe()
       <th>max</th>
       <td>2.046343</td>
       <td>41.352760</td>
-      <td>1979.000000</td>
-      <td>1367.000000</td>
-      <td>2765.940000</td>
-      <td>1795.254000</td>
-      <td>6159.730000</td>
-      <td>1287.270000</td>
-      <td>1405.000000</td>
-      <td>8.000000</td>
-      <td>7.000000</td>
+      <td>...</td>
       <td>83.000000</td>
       <td>233.075410</td>
     </tr>
@@ -597,11 +441,6 @@ buildings["District"].value_counts(normalize=True)
 ```
 
     DISTRICT PROPORTIONS:
-
-
-
-
-
     Marianao    0.613022
     Vinyets     0.386978
     Name: District, dtype: float64
@@ -615,11 +454,6 @@ buildings["Number of Floors"].value_counts(normalize=True)
 ```
 
     NUMBER OF FLOORS PROPORTIONS:
-
-
-
-
-
     5    0.254300
     2    0.250614
     3    0.131450
@@ -651,11 +485,6 @@ buildings_test_set["District"].value_counts(normalize=True)
 ```
 
     DISTRICT PROPORTIONS IN TEST SET:
-
-
-
-
-
     Marianao    0.613497
     Vinyets     0.386503
     Name: District, dtype: float64
@@ -669,11 +498,6 @@ buildings_test_set["Number of Floors"].value_counts(normalize=True)
 ```
 
     NUMBER OF FLOORS PROPORTIONS IN TEST SET:
-
-
-
-
-
     5    0.257669
     2    0.251534
     3    0.128834
@@ -2023,10 +1847,6 @@ grid_search.fit(buildings_prepared, buildings_labels)
     CPU times: user 3min 3s, sys: 3.57 s, total: 3min 6s
     Wall time: 3min 8s
 
-
-
-
-
     GridSearchCV(cv=5, estimator=RandomForestRegressor(random_state=42),
                  param_grid=[{'max_features': [2, 4, 6, 8],
                               'n_estimators': [30, 100, 130, 200, 230]},
@@ -2124,10 +1944,6 @@ random_search.fit(buildings_prepared, buildings_labels)
 
     CPU times: user 1.91 s, sys: 150 ms, total: 2.06 s
     Wall time: 3min 40s
-
-
-
-
 
     RandomizedSearchCV(cv=5, estimator=RandomForestRegressor(), n_iter=50, n_jobs=2,
                        param_distributions={'bootstrap': [True, False],
