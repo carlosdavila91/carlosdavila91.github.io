@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Carlos Dávila's Projects
+title: Home
 ---
 
 # About
