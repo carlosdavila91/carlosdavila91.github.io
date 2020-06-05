@@ -57,7 +57,9 @@ The performance measure is an indicator that gives an idea of how much error the
 
 ![]({{site.baseurl}}/assets/img/sant-boi-models/error.png)
 
-The performance measure selected for this project is Root Mean Squared Error (RMSE), as it is a typical error measure when it comes to Regression tasks[[3]](#references). It is described as follows:
+The performance measure selected for this project is Root Mean Squared Error (RMSE), as it is a typical error measure when it comes to Regression tasks[[4]](#references).
+
+It is described as follows:
 
 $$RMSE(X,h)=\sqrt{\frac{1}{m}\sum^m_{i=1}(h(x^{(i)}) - y^{(i)})^2}$$
 
@@ -641,7 +643,7 @@ In the course of the project, discretization or binning of numerical attributes 
 
 The produced categories could have an order importance from the physical point of view. E.g., the construction period may determine how buildings are constructed; being oriented to S is better than N, or being a small sized building (in terms of dwellings, number of floors, etc.) account for a higher energy demand for HVAC systems.
 
-According to Khun and Johnson[[4]](#references), this should be a last resource approach in the context of a Machine Learning Project.
+According to Khun and Johnson[[5]](#references), this should be a last resource approach in the context of a Machine Learning Project.
 
 In this study we are testing this approach anyway, as there is reasonable knowledge about the meaning of manually produced categories or bins.
 
