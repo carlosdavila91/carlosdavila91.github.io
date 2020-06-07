@@ -21,55 +21,6 @@ author: Carlos Dávila Luelmo
    * [Types of party walls](#types-of-party-walls)
 * [EDA - Continuous Variables](#exploratory-data-analysis-eda---continuous-variables)
 
-## Introduction
-
-### A little bit of Spanish Construction History (in a nutshell!)
-
-There are several moments of history in which an explosion of the construction sector occurs. Those are mainly between the beginning of 60's, with a massive migration from the countryside to the city; and at the beginning of the 90's until the year 2008, when the big international financial crisis begun.
-
-<p align="center">
-  <img src="{{site.baseurl}}/assets/img/sant-boi-eda/census.png">
-</p>
-
-### Final Energy Consumption by sector in Spain
-
-The following data has been taken from IDAE [\[1\]](http://guiaenergia.idae.es/el-consumo-energia-en-espana/)
-
-| Sector                                 | %             |
-| :------------------------------------- |--------------:|
-| Transportation                         | 41,7          |
-| Industry                               | 23,5          |
-| Households                             | 18,5          |
-| Services                               | 12,5          |
-| Agriculture, phishing and others       | 3,8           |
-
-As it can be seen above, households are directly responsible of an 18,5% of the final energy consumption. If we take into account that Services includes commerce, hostelry, offices, health and education, and that all of those sectors require buildings, we can come to realize how much energy the building sector consumes.
-
-The Standard calling for builders to use isolation on walls came into force in the year 1980 [\[2\]](https://www.boe.es/buscar/doc.php?id=BOE-A-1979-24866). Until then, thermal isolation on the facade wasn't common.
-
-This milestone represents a great opportunity today to address one of the main sectors when it comes to Carbon Dioxide emissions.
-
-## Case of Study
-
-### Sant Boi de Llobregat
-
-The City Council of Sant Boi de Llobregat (Catalonia) asked to the Universitat Politècnica de Catalunya for a study on the Energy Efficiency of buildings in certain districts of this town.
-
-Buildings taken into account for the study are those which were built before 1980, according to the reasons given in the previous introduction.
-
-Data were collected from more than 800 buildings. An exploratory analysis of the variables collected on the buildings is presented here.
-
-### Overall aim of the Study
-
-This study have been conducted in order to establish a strategy to intervene in buildings from an energy point of view.
-
-The two possible ways to address this problem are the following:
-
-* Intervene those buildings which may lead to a greater amount of energy savings.
-* Intervene buildings in order to reduce the chances of inhabitants to fall into energy poverty
-
-These are items to be taken into account to make a good EDA.
-
 ## Exploratory Data Analysis (EDA) - Discrete Variables
 
 ### District
