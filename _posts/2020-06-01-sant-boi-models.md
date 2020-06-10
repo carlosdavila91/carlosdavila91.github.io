@@ -1,7 +1,13 @@
 ---
-layout: post
 title: Sant Boi Building Renovation Strategy. Models
 author: Carlos Dávila Luelmo
+date: 2020-06-01
+tags:
+  - sustainability
+  - construction
+  - energy
+  - Spain
+  - Catalonia
 ---
 
 ## Table of contents
@@ -37,7 +43,7 @@ Hence, demographic, social variables and also others related to climate (like te
 
 Anyhow, this goes beyond the scope and aim of the present excercise.
 
-To see previous work about this project, variables considered and its context [go to publications]({% link index.md %}).
+To see previous work about this project, variables considered and its context [go to publications]().
 
 <a id='goals'></a>
 ## Goals

@@ -1,7 +1,13 @@
 ---
-layout: post
 title: Sant Boi Building Renovation Strategy. Introduction
+date: 2019-08-15
 author: Carlos Dávila Luelmo
+tags:
+  - sustainability
+  - construction
+  - energy
+  - Spain
+  - Catalonia
 ---
 
 [_See the code used for this post here_](https://github.com/carlosdavila91/santboi_eda/tree/master/code)
