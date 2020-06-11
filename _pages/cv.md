@@ -15,7 +15,7 @@ Work experience
 ======
 **Data Science Intern at Pagantis** (oct'19 &mdash; mar'20)
 
-I worked across the board between the Data Science and Business Intelligence departments. I helped developing tools to automate the data analysis process, like `shiny` dashboards and the company's `R` package. To improve the models, I also carry out **adjustments in the hyperparameters of the models in production**.
+I worked across the board between the Data Science and Business Intelligence departments. I helped developing tools to automate the data analysis process, like `shiny` dashboards and the company's `R` package. I also carry out **adjustments in the hyperparameters of the models in production to improve their performance**.
 
 **Technical Consultant at Ciclica** (nov'18 &mdash; may'19)
 
