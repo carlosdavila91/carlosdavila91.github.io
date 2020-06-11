@@ -61,7 +61,7 @@ In short, the aims are:
 
 The performance measure is an indicator that gives an idea of how much error the system tipically makes in its predictions. It is well defined in the picture bellow.
 
-![]({{site.baseurl}}/assets/img/sant-boi-models/error.png)
+![]({{site.baseurl}}/images/sant-boi-models/error.png)
 
 The performance measure selected for this project is Root Mean Squared Error (RMSE), as it is a typical error measure when it comes to Regression tasks[[4]](#references).
 
@@ -91,7 +91,7 @@ Thus, it is asumed that the energy consumption variable is real rather than an e
 
 It is assumed that anyone that reach this notebook will have some basic familiarity with python and Machine Learning. Just in case, it is going to be written to be as accessible as possible to someone with little to no knoweledge to them.
 
-![]({{site.baseurl}}/assets/img/sant-boi-models/ml-explained.jpeg)
+![]({{site.baseurl}}/images/sant-boi-models/ml-explained.jpeg)
 
 Sometimes, variables are refered as attributes or features, being attributes the prefered one.
 
@@ -422,7 +422,7 @@ plt.show()
 ```
 
 
-![png]({{site.baseurl}}/assets/img/sant-boi-models/output_16_0.png)
+![png]({{site.baseurl}}/images/sant-boi-models/output_16_0.png)
 
 
 Now we can observe some peculiarities in data:
@@ -535,7 +535,7 @@ c = buildings_train_set["Heat Demand"]
 label = buildings_train_set["Number of Dwellings"]
 cmap=plt.get_cmap('jet')
 
-sb_map = plt.imread("{{site.baseurl}}/assets/img/sant-boi-models/map.png")
+sb_map = plt.imread("{{site.baseurl}}/images/sant-boi-models/map.png")
 bbox = (2.024, 2.049, 41.334, 41.355)
 
 fig = plt.figure(figsize=(4*6,3*6))
@@ -550,7 +550,7 @@ plt.show()
 ```
 
 
-![png]({{site.baseurl}}/assets/img/sant-boi-models/output_25_0.png)
+![png]({{site.baseurl}}/images/sant-boi-models/output_25_0.png)
 
 
 Credits to [openstreemap.org](https://www.openstreetmap.org/) for he image in the background.
@@ -613,7 +613,7 @@ plt.show()
 ```
 
 
-![png]({{site.baseurl}}/assets/img/sant-boi-models/output_29_0.png)
+![png]({{site.baseurl}}/images/sant-boi-models/output_29_0.png)
 
 
 We can get a much better idea of how variables correlates with scatter plots. In the following, you can see how some patterns appears in the scatterplots (focus on the first row).
@@ -634,7 +634,7 @@ plt.show()
 ```
 
 
-![png]({{site.baseurl}}/assets/img/sant-boi-models/output_31_0.png)
+![png]({{site.baseurl}}/images/sant-boi-models/output_31_0.png)
 
 
 
@@ -668,7 +668,7 @@ plt.show()
 ```
 
 
-![png]({{site.baseurl}}/assets/img/sant-boi-models/output_35_0.png)
+![png]({{site.baseurl}}/images/sant-boi-models/output_35_0.png)
 
 
 
@@ -705,7 +705,7 @@ plt.show()
 ```
 
 
-![png]({{site.baseurl}}/assets/img/sant-boi-models/output_38_0.png)
+![png]({{site.baseurl}}/images/sant-boi-models/output_38_0.png)
 
 
 
@@ -742,7 +742,7 @@ plt.show()
 ```
 
 
-![png]({{site.baseurl}}/assets/img/sant-boi-models/output_41_0.png)
+![png]({{site.baseurl}}/images/sant-boi-models/output_41_0.png)
 
 
 
@@ -776,7 +776,7 @@ plt.show()
 ```
 
 
-![png]({{site.baseurl}}/assets/img/sant-boi-models/output_44_0.png)
+![png]({{site.baseurl}}/images/sant-boi-models/output_44_0.png)
 
 
 
@@ -855,7 +855,7 @@ plt.show()
 ```
 
 
-![png]({{site.baseurl}}/assets/img/sant-boi-models/output_52_0.png)
+![png]({{site.baseurl}}/images/sant-boi-models/output_52_0.png)
 
 
 As we can see above, there are a few points over the 75% quantile of the distribution (to the right of the rightest wisker of the boxplot). It is hard to determine if all of them should be considered outliers.
@@ -920,7 +920,7 @@ plt.show()
 ```
 
 
-![png]({{site.baseurl}}/assets/img/sant-boi-models/output_59_0.png)
+![png]({{site.baseurl}}/images/sant-boi-models/output_59_0.png)
 
 
 In this ocassion, we are trying the `z-score` method as it is a less restrictive one and it will keep more variablity in data.
@@ -2341,7 +2341,7 @@ While doing this excercise other ideas for Machine Learning applications regarid
 * A model to classify buildings regarding their potential to be susceptible of an renovation. This would have to be done taking into account all kind of variables to avoid producing models which impair some individuals in favour of others.
 * A model to detect errors in building data collection. This way the procedure of data collection for institutions like the Cadastre could become less resource intensive.
 
-![]({{site.baseurl}}/assets/img/sant-boi-models/know.jpeg)
+![]({{site.baseurl}}/images/sant-boi-models/know.jpeg)
 
 <a id='references'></a>
 # References
