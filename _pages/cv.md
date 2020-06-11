@@ -53,6 +53,9 @@ Skills
 
 `GitHub`
 `Statistical Modeling`
+`Excel`
+`Oral Presentation`
+`QGIS`
 
 **Medium Experience**
 
