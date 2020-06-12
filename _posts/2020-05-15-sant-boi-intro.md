@@ -1,6 +1,6 @@
 ---
-title: Sant Boi Building Renovation Strategy. Introduction
-date: 2019-08-15
+title: Sant Boi Building Renovation Strategy. A little bit of Spanish Construction History (in a nutshell!)
+date: 2020-05-15
 author: Carlos Dávila Luelmo
 tags:
   - sustainability
@@ -8,22 +8,8 @@ tags:
   - energy
   - Spain
   - Catalonia
+  - Sant Boi de Llobregat
 ---
-
-[_See the code used for this post here_](https://github.com/carlosdavila91/santboi_eda/tree/master/code)
-
-## Table of contents
-* [Introduction](#introduction)
-   * [A little bit of Spanish Construction Sector History](#a-little-bit-of-spanish-construction-sector-history)
-   * [Final Energy Consumption by sector in Spain](#final-energy-consumption-by-sector-in-spain)
-* [Case of Study](#case-of-study)
-   * [Sant Boi de Llobregat](#sant-boi-de-llobregat)
-   * [Overall aim of the Study](#overall-aim-of-the-study)
-* [References](#references)
-
-## Introduction
-
-### A little bit of Spanish Construction History (in a nutshell!)
 
 There are several moments of history in which an explosion of the construction sector occurs. Those are mainly between the beginning of 60's, with a massive migration from the countryside to the city; and at the beginning of the 90's until the year 2008, when the big international financial crisis begun.
 
@@ -74,3 +60,5 @@ The two proposed ways to address this problem were the following:
 
 1. [\^](#final-energy-consumption) IDAE (2016). "Consumo de Energía en España". [http://guiaenergia.idae.es/el-consumo-energia-en-espana/](http://guiaenergia.idae.es/el-consumo-energia-en-espana/)
 2. [\^](#isolation-standard) Real Decreto 2429/1979, de 6 de julio. Boletín Oficial del Estado. [https://www.boe.es/buscar/doc.php?id=BOE-A-1979-24866](https://www.boe.es/buscar/doc.php?id=BOE-A-1979-24866)
+
+[_See the code used for this post here_](https://github.com/carlosdavila91/santboi_eda/tree/master/code)

@@ -1,31 +1,17 @@
 ---
-title: Sant Boi Building Renovation Strategy. EDA
+title: Sant Boi Building Renovation Strategy. Exploratory Data Analysis
 author: Carlos Dávila Luelmo
-date: 2019-08-26
+date: 2020-05-26
 tags:
   - sustainability
   - construction
   - energy
   - Spain
   - Catalonia
+  - Sant Boi de Llobregat
 ---
 
-[_See the code used for this post here_](https://github.com/carlosdavila91/santboi_eda/tree/master/code)
-
-## Table of contents
-
-* [EDA - Discrete Variables](#exploratory-data-analysis-eda---discrete-variables)
-   * [District](#district)
-   * [Decade](#decade)
-   * [Orientation of Buildings](#orientation-of-buildings)
-   * [Number of dwellings](#number-of-dwellings)
-   * [Number of floors](#number-of-floors)
-   * [Use of the ground floor](#use-of-the-ground-floor)
-   * [Type of facade](#type-of-facade)
-   * [Types of Roofs](#types-of-roofs)
-   * [Types of facade openings](#types-of-facade-openings)
-   * [Types of party walls](#types-of-party-walls)
-* [EDA - Continuous Variables](#exploratory-data-analysis-eda---continuous-variables)
+Univariate Exploratory Data Analysis to understand the attributes gathered for the project.
 
 ## Exploratory Data Analysis (EDA) - Discrete Variables
 
@@ -218,3 +204,5 @@ As we can see, buildings with similar number of heights present similar physical
 </p>
 
 All the information gathered here was taken into account in order to reach the aim of the study developed for the Sant Boi de Llobregat City Council.
+
+[_See the code used for this post here_](https://github.com/carlosdavila91/santboi_eda/tree/master/code)

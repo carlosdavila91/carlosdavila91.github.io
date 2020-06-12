@@ -1,5 +1,5 @@
 ---
-title: Sant Boi Building Renovation Strategy. Models
+title: Sant Boi Building Renovation Strategy. Applying Machine Learning in the Building Renovation Context
 author: Carlos Dávila Luelmo
 date: 2020-06-01
 tags:
@@ -8,22 +8,13 @@ tags:
   - energy
   - Spain
   - Catalonia
+  - Sant Boi de Llobregat
 ---
 
-## Table of contents
-- [Machine Learning in the Building Renovation Context](#machine-learning-in-the-building-renovation-context)
-- [Create the Test Set](#create-the-test-set)
-- [Exploring Data Visually to Gain Insights](#exploring-data-visually-to-gain-insights)
-- [Attribute Combination](#attribute-combination)
-- [Prepare Data for ML ALgorithms](#prepare-data-for-ml-algorithms)
-- [Model Selection and Training](#model-selection-and-training)
-- [Take aways](#take-aways)
-- [References](#references)
-
 <a id='top'></a>
-# Machine Learning in the Building Renovation Context
+As shown in previous posts about the Sant Boi Building Renovation Strategy, a physical model was applied to a set of buildings with certain characteristics to get an estimation of how much energy consumes each one of them.
 
-A dataset of buildings from Sant Boi de Llobregat was collected and an energy consumption model (a physical and static one) was implemented to get an estimate of annual energy consumption for each building[[1]](#references).
+Here it will be discussed the importance data and Machine Learning Models applied in the context of Building Renovation Strategies.
 
 A considerable amount of data about building stock in Spain is already a public asset, which can be accessed via [Catastro](http://www.catastro.meh.es/). However, that doesn't happen when it comes to data about energy consumption.
 
@@ -32,7 +23,7 @@ Sustainability implies governance. Public data is an important tool these days t
 
 There are already some initiatives aligned with the present project such as [urbanZEB](http://urbanzeb.com/) and [this study of energy consumption in the Municipality of Rubí](http://rubienergia.300000kms.net/). Using models in this context could result in interesting results.
 
-However, we must not forget that models may tend to produce deceiving outcomes. This can happen when we (modelers) do not use all the variables necesary or when using the wrong type. A clear example of this is the IMPACT system designed to evaluate new teacher's professional performance.[[2]](#references)
+However, we must not forget that models may tend to produce deceiving outcomes. This can happen when we (modelers) do not use all the necessary variables or when we use the wrong ones. A clear example of this is the IMPACT system designed to evaluate new teacher's professional performance.[[2]](#references)
 
 <a id='jeavons'></a>
 In the EU context, low income families are susceptible of suffering [energy poverty](https://www.energypoverty.eu/about/what-energy-poverty).
@@ -41,7 +32,7 @@ In the opposite direction, high income families tend to consume more than less w
 
 Hence, demographic, social variables and also others related to climate (like temperature, precipitation, rise and sundown hours) should be taken into account to enrich this type of study. Furthermore, time could be included, and thus, get a more accurate prediction of energy consumption.
 
-Anyhow, this goes beyond the scope and aim of the present excercise.
+Anyhow, this goes beyond the scope and aim of the present exercise.
 
 To see previous work about this project, variables considered and its context [go to publications]().
 
