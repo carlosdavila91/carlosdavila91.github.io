@@ -33,6 +33,7 @@ Campuslab, drafting the Action Plan. This was an Action Research Project to turn
 
 Education
 ======
+* M.S in Data Science. Universitat Oberta de Catalunya, begins in sept'-2020.
 * Machine Learning Complete Course: Data Science with Python. Udemy, 2019. [(Certificate)](https://www.udemy.com/certificate/UC-4L07QRWS/)
 * Introduction to Data Science: Statistical Programming with R, 2017. [(Certificate)](https://www.coursera.org/account/accomplishments/verify/4Z4H449P6FBM)
 * M.S. in Sustainability Science and Technology. Universitat Politècninca de Catalunya, 2018.
@@ -45,21 +46,15 @@ Skills
 ======
 **Advanced**
 
-`R Programming`:
-* `dplyr`, `ggplot2`, `data.table`
+`R Programming`: `dplyr` `ggplot2` `data.table`
 
-`Python`:
-* `pandas`, `numpy`, `sklearn`, `matplotlib`, `Tensorflow`
+`Python`: `pandas` `numpy` `sklearn` `matplotlib` `Tensorflow`
 
-`GitHub`
-`Statistical Modeling`
-`Excel`
-`Oral Presentation`
-`QGIS`
+`GitHub` `Statistical Modeling` `Excel` `Oral Presentation` `QGIS`
 
 **Medium Experience**
 
-`SQL`, `MongoDB`, `Tableau`, `AWS`.
+`SQL` `MongoDB` `Tableau` `AWS`
 
 ---
 
@@ -73,10 +68,4 @@ Skills
 ======
   <ul>{% for post in site.talks %}
     {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul> -->
-
-<!-- Training
-======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
   {% endfor %}</ul> -->
