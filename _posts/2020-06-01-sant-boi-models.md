@@ -52,7 +52,9 @@ In short, the aims are:
 
 The performance measure is an indicator that gives an idea of how much error the system tipically makes in its predictions. It is well defined in the picture bellow.
 
-![]({{site.baseurl}}/images/sant-boi-models/error.png)
+<p align="center">
+  <img src="{{site.baseurl}}/images/sant-boi-models/error.png">
+</p>
 
 The performance measure selected for this project is Root Mean Squared Error (RMSE), as it is a typical error measure when it comes to Regression tasks[[4]](#references).
 
@@ -82,7 +84,9 @@ Thus, it is asumed that the energy consumption variable is real rather than an e
 
 It is assumed that anyone that reach this notebook will have some basic familiarity with python and Machine Learning. Just in case, it is going to be written to be as accessible as possible to someone with little to no knoweledge to them.
 
-![]({{site.baseurl}}/images/sant-boi-models/ml-explained.jpeg)
+<p align="center">
+  <img src="{{site.baseurl}}/images/sant-boi-models/ml-explained.jpeg">
+</p>
 
 Sometimes, variables are refered as attributes or features, being attributes the prefered one.
 
@@ -2332,7 +2336,9 @@ While doing this excercise other ideas for Machine Learning applications regarid
 * A model to classify buildings regarding their potential to be susceptible of an renovation. This would have to be done taking into account all kind of variables to avoid producing models which impair some individuals in favour of others.
 * A model to detect errors in building data collection. This way the procedure of data collection for institutions like the Cadastre could become less resource intensive.
 
-![]({{site.baseurl}}/images/sant-boi-models/know.jpeg)
+<p align="center">
+  <img src="{{site.baseurl}}/images/sant-boi-models/know.jpeg">
+</p>
 
 <a id='references'></a>
 # References
