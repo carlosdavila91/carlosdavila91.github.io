@@ -12,16 +12,13 @@ tags:
 
 The aim of this notebook is to explore graph animation techniques with python.
 
-To do so, we are using some data from [gapminder](https://www.gapminder.org/df/) about CO$_2$ emissions, population and gdp per capita. To complement the visualizations continents are included from another data source.
+To do so, I'm using some data from [gapminder](https://www.gapminder.org/df/) about CO$_2$ emissions, population and GDP per capita.
 
 # Data preparation
 
 Gapminder data are often used in examples about how to animate graphs with python. However, this time I wanted to add a personal touch to the publication, so I added some extra features to data to produce a different plot from the ones we can find in this type of demonstrations.
 
-Hence, some previous steps of data preparation are needed. You can find a detailed description on the data wrangling process [in this notebook]().
-
-Read the data previously prepared.
-
+Hence, some previous steps of data preparation were needed. You can find a detailed description on the data wrangling process [in this notebook](https://github.com/carlosdavila91/animating_graphs/blob/master/data_preparation.ipynb).
 
 ```python
 df = pd.read_csv("prepared.csv")
@@ -38,7 +35,7 @@ import seaborn as sns
 %config InlineBackend.figure_format ='retina'
 ```
 
-First, a few parameters on seaborn style are modified, to get a nice eye-catching result, and an adequate resolution for the plot.
+I like modifying a few parameters on seaborn style to get a nice eye-catching result, and an adequate resolution for the plot.
 
 
 ```python
@@ -46,17 +43,16 @@ sns.set_style('whitegrid',{'grid.color':'.8'})
 my_dpi=100
 ```
 
-We need to transform the categorical column `continent` in a numerical value group1->1, group2->2...
+To then group by `continent`, I found it was necesary to transform this variable into categories.
 
 
 ```python
 df['continent']=pd.Categorical(df['continent'])
 ```
 
-Something I had to do was to play with the axis limits. Here we can see that the max value for the Y axis (247) is way higher than the one that I setup afterwards (30). Data science is about making decissions. Here I chose to tell the story this way to highlight the linear relationship throughout the time between the axis variables. Otherwise, this relationship is harder to appreciate.
+Something I had to do was to play with the axis limits. Here we can see that the max value for the Y axis (247) is way higher than the one that I set up afterwards (30). Data science is about making decissions. Here I chose to tell the story this way to highlight the linear relationship that stands out throughout the time between the GDP per capita and the CO$_2$ Emissions. Otherwise, this relationship is harder to appreciate.
 
 Furthermore, the amount of countries above the CO$_2$ Emissions limit of 30 are few and happens occasionaly. In a profesional context, the best practice would be to investigate if these data points are outliers or errors.
-
 
 ```python
 xmin = int(df['gdp_per_capita'].min())
@@ -75,7 +71,8 @@ ymax = int(df['co2_per_capita'].max())
 
 
 
-Another drawback of using the `matplotlib` method is that it is complex to set fixed values for the size of the markers in the legend. [I got it from this stackoverflow answer](https://stackoverflow.com/a/47116009/11597692).
+A drawback that I found of using `matplotlib` is that it is complex to set fixed values for the size of the markers in the legend. [I got it from this stackoverflow answer](https://stackoverflow.com/a/47116009/11597692).
+
 
 If you don't want the markers sticking out of the legend this step is mandatory.
 
@@ -91,7 +88,7 @@ def update_prop(handle, orig):
     handle.set_sizes([marker_size])
 ```
 
-We pass a dict to the `handler_map` parameter inside the `plt.legend()` funtion as you can see in the 40th line of the code chunk bellow.
+Then, you have to pass a dict to the `handler_map` parameter inside the `plt.legend()` funtion as you can see in the code chunk bellow.
 
 
 ```python
@@ -196,11 +193,9 @@ fig.update_yaxes(title_text='CO2 emissions per capita')
 plt.close("all")
 ```
 
-When wirting a post like this one, you need to save the result to then display it. I found that this was not an easy task. After searching through several sources I found [this great post by Matteo Guzzo](https://matteoguzzo.com/blog/embed-html-graphs-plotly/) which helped a lot to complete this part.
+When wirting a post like this one, you need to save the result to then display it. I found that this was not an easy task. After searching through several sources I found [this great post by Matteo Guzzo](https://matteoguzzo.com/blog/embed-html-graphs-plotly/) which helped me a lot to complete this part.
 
-To sum up, after creating the plot, we must save it to then display it, e.g. in this blog post.
-
-The `include_plotlyjs='cdn'` keyword argument includes the `plotly.js` library as a link to the official CDN. See the Matteo's blog post for more detail on how this works.
+To sum up, after creating the plot, we must save it into an `.html` file to then display it. The file must include a link to the `plotly.js` library. That's why it is mandatory to use this `include_plotlyjs='cdn'` parameter when saving the plot. See the Matteo's blog post for more detail on how this works.
 
 
 ```python
