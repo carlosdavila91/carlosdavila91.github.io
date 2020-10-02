@@ -13,6 +13,10 @@ redirect_from:
 
 Work experience
 ======
+**Freelancer Data Consultant** (jul'20 &mdash; today)
+
+I'm offering my services as Data Science Consultant. So far I've worked for a retail company to deliver valuable data reports and I've made statistical advising for an academic investigation related to Carbon Dioxide Emissions.
+
 **Data Science Intern at Pagantis** (oct'19 &mdash; mar'20)
 
 I worked across the board between the Data Science and Business Intelligence departments. I helped developing tools to automate the data analysis process, like `shiny` dashboards and the company's `R` package. I also carry out **adjustments in the hyperparameters of the models in production to improve their performance** according to the results of the analyses.
@@ -33,7 +37,7 @@ Campuslab, drafting the Action Plan. This was an Action Research Project to turn
 
 Education
 ======
-* M.S in Data Science. Universitat Oberta de Catalunya, begins in sept'-2020.
+* M.S in Data Science. Universitat Oberta de Catalunya, sept'20 &mdash; today.
 * Machine Learning Complete Course: Data Science with Python. Udemy, 2019. [(Certificate)](https://www.udemy.com/certificate/UC-4L07QRWS/)
 * Introduction to Data Science: Statistical Programming with R, 2017. [(Certificate)](https://www.coursera.org/account/accomplishments/verify/4Z4H449P6FBM)
 * M.S. in Sustainability Science and Technology. Universitat Politècninca de Catalunya, 2018.

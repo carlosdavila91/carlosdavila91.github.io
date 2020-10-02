@@ -8,9 +8,10 @@ redirect_from:
   - /about.html
 ---
 
-I’m a technical architect who has made a drastic career shift to Data Science. I've been motivated by the potential of this field to improve our lives on many levels. It’s been a while since I started applying Machine Learning to both personal and professional projects. Now, I'm looking forward to meet new challenges and improve my skills.
+One of my main features is that **I do love learning**. I don't say it as a banality, I mean it. Learning new things is in my top 3 of things that I love to do the most. I consider myself good at it.
 
-## Current interests:
-+ Data Science
-+ Sustainability
-+ Energy and Urban Planning
+That was what lead me to make a drastic career shift towards Data Science from a background in Architecture. It may seem unconnected, but in the end, most of the work that I've done in my (brief) career has been related to data somehow.
+
+By now, I'm proud to have been capable of learning by myself most of the things that it takes to be a Data Scientist. However, in line with one of my _late-motives_, I keep studying, now in a little bit more formal way.
+
+My current interests, and mostly the things that guide my lifetime projects are **Data Science** and the things that it involve, like statistics and math, but also I'm passionate about **Sustainability**. The job that I'd love to have would be related to both fields. In the meantime, I'll keep working to achieve it!
