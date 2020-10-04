@@ -37,39 +37,25 @@ Campuslab, drafting the Action Plan. This was an Action Research Project to turn
 
 Education
 ======
-* M.S in Data Science. Universitat Oberta de Catalunya, sept'20 &mdash; today.
-* Machine Learning Complete Course: Data Science with Python. Udemy, 2019. [(Certificate)](https://www.udemy.com/certificate/UC-4L07QRWS/)
-* Introduction to Data Science: Statistical Programming with R, 2017. [(Certificate)](https://www.coursera.org/account/accomplishments/verify/4Z4H449P6FBM)
-* M.S. in Sustainability Science and Technology. Universitat Politècninca de Catalunya, 2018.
-* M.S. in Sustainable Intervention in the Built Environment. Universitat Politècninca de Catalunya, 2018.
-* B.S. in Technical Arquitecture. Universidad de La Laguna, 2016.
+* **M.S in Data Science**. Universitat Oberta de Catalunya, (sept'20 &mdash; today).
+* **Machine Learning Complete Course: Data Science with Python**. Udemy, (2019). [(Certificate)](https://www.udemy.com/certificate/UC-4L07QRWS/)
+* **Introduction to Data Science: Statistical Programming with R**, Coursera (2017). [(Certificate)](https://www.coursera.org/account/accomplishments/verify/4Z4H449P6FBM)
+* **M.S. in Sustainability Science and Technology**. Universitat Politècninca de Catalunya, (2018).
+* **M.S. in Sustainable Intervention in the Built Environment**. Universitat Politècninca de Catalunya, (2018).
+* **B.S. in Technical Architecture**. Universidad de La Laguna, (2016).
 
 ---
 
 Skills
 ======
-**Advanced**
+## Advanced
 
-`R Programming`: `dplyr` `ggplot2` `data.table`
+**R Programming**: `Tidyverse` `ggplot2` `data.table`
 
-`Python`: `pandas` `numpy` `sklearn` `matplotlib` `Tensorflow`
+**Python**: `pandas` `numpy` `sklearn` `matplotlib` `Tensorflow`
 
-`GitHub` `Statistical Modeling` `Excel` `Oral Presentation` `QGIS`
+**Miscellaneous**: `GitHub` `Statistical Modeling` `Excel` `Oral Presentation` `QGIS`
 
-**Medium Experience**
+## Medium Experience
 
 `SQL` `MongoDB` `Tableau` `AWS`
-
----
-
-<!-- Blog Posts
-======
-  <ul>{% for post in site.publications %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul> -->
-
-<!-- Talks
-======
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul> -->
