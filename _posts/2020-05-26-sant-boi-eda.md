@@ -1,5 +1,5 @@
 ---
-title: Sant Boi Building Renovation Strategy. Exploratory Data Analysis
+title: Exploratory Data Analysis
 author: Carlos Dávila Luelmo
 date: 2020-05-26
 tags:

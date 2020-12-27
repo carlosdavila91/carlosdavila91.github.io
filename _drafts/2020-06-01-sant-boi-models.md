@@ -1,5 +1,5 @@
 ---
-title: Sant Boi Building Renovation Strategy. Applying Machine Learning in the Building Renovation Context
+title: Machine Learning in the Building Renovation Context
 author: Carlos Dávila Luelmo
 date: 2020-06-01
 tags:
@@ -88,7 +88,7 @@ It is assumed that anyone that reach this notebook will have some basic familiar
   <img src="{{site.baseurl}}/images/sant-boi-models/ml-explained.jpeg">
 </p>
 
-Sometimes, variables are refered as attributes or features, being attributes the prefered one.
+Sometimes, variables are prefered as attributes or features, being attributes the preferred one.
 
 ## Configuration
 
@@ -429,7 +429,7 @@ Now we can observe some peculiarities in data:
 
 # Create the Test Set
 
-After getting some quick look at the data, the next thing we need to do is puting aside the test set (i.e., the dataset we will use to test our model's performance with data that it does not know) to ignore it until the appropiate moment.
+After getting some quick look at the data, the next thing we need to do is putting aside the test set (i.e., the dataset we will use to test our model's performance with data that it does not know) to ignore it until the apropiate moment.
 
 The approach of this study is territory-wise. This must be taken into account when splitting the dataset in the train and test set. Data in both sets must be representative of each District.
 
