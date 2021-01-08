@@ -6,11 +6,12 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
+skin                     : air   
 locale                   : "en-US"
 title                    : "Carlos Dávila"
 title_separator          : "-"
-name                     : &name "Carlos Dávila"
-description              : &description "Data Science and Sustainability"
+name                     : &name "Carlos Dávila Luelmo"
+description              : &description "Data and Sustainability"
 url                      : https://carlosdavila91.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "carlosdavila91.github.io"
@@ -82,7 +83,7 @@ analytics:
 author:
   name             : "Carlos Dávila Luelmo"
   avatar           : "profile.png"
-  bio              : "Data Science and Sustainability"
+  bio              : "Data and Sustainability"
   location         : "Barcelona"
   employer         :
   # pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
@@ -102,7 +103,7 @@ author:
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         : "carlos-dávila-luelmo-9859686b"
+  linkedin         : "carlos-dávila-luelmo"
   orcid            : #"http://orcid.org/yourorcidurl"
   pinterest        :
   soundcloud       :
@@ -146,6 +147,7 @@ exclude:
   - package.json
   - tmp
   - vendor
+  - TODO.md
 keep_files:
   - .git
   - .svn
@@ -175,19 +177,9 @@ kramdown:
 
 # Collections
 collections:
-  training:
-    output: true
-    permalink: /:collection/:path/
   publications:
     output: true
     permalink: /:collection/:path/
-  portfolio:
-    output: true
-    permalink: /:collection/:path/
-  talks:
-    output: true
-    permalink: /:collection/:path/
-
 
 # Defaults
 defaults:
@@ -209,15 +201,6 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # _training
-  - scope:
-      path: ""
-      type: training
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comments: true
   # _publications
   - scope:
       path: ""

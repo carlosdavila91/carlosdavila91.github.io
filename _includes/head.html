@@ -1,3 +1,15 @@
+{% if page.layout != 'index' %}
+  {% assign posts=site.posts | where:"lang-ref", page.lang-ref | sort: 'lang' %}
+  {% if posts.size == 0 %}
+    {% assign posts=site.pages | where:"lang-ref", page.lang-ref | sort: 'lang' %}
+  {% endif %}
+  {% if posts.size > 1 %}
+    {% for post in posts %}
+  <link rel="alternate" hreflang="{{ site.data.languages[post.lang].icon }} {{ site.data.languages[post.lang].label }}" href="{{ site.base-url }}{{ post.url }}" />
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
 {% include base_path %}
 
 <meta charset="utf-8">
