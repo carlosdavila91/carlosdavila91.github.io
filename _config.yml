@@ -6,7 +6,8 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-skin                     : air   
+template                 : mmistakes/minimal-mistakes
+skin                     : air
 locale                   : "en-US"
 title                    : "Carlos Dávila"
 title_separator          : "-"
