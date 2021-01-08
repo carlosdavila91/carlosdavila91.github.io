@@ -6,11 +6,11 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-template                 : mmistakes/minimal-mistakes
-skin                     : air
+remote_theme             : mmistakes/minimal-mistakes
+skin                     : contrast
 locale                   : "en-US"
 title                    : "Carlos Dávila"
-title_separator          : "-"
+title_separator          : "|"
 name                     : &name "Carlos Dávila Luelmo"
 description              : &description "Data and Sustainability"
 url                      : https://carlosdavila91.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
