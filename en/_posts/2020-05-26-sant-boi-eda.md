@@ -1,5 +1,5 @@
 ---
-title: Exploratory Data Analysis
+title: Exploratory Data Analysis. Just an example.
 author: Carlos Dávila Luelmo
 date: 2020-05-26
 lang: en
@@ -13,7 +13,7 @@ tags:
   - Sant Boi de Llobregat
 ---
 
-Univariate Exploratory Data Analysis to understand the attributes gathered for the project.
+Univariate Exploratory Data Analysis to understand the information gathered for the project presented in [this introductory blog post]({% link en/_posts/2020-05-15-sant-boi-intro.md %}).
 
 ## Exploratory Data Analysis (EDA) - Discrete Variables
 

@@ -1,5 +1,5 @@
 ---
-title: Sant Boi Building Renovation Strategy. A little bit of Spanish Construction History (in a nutshell!)
+title: A little bit of Spanish Construction History (in a nutshell!)
 date: 2020-05-15
 author: Carlos Dávila Luelmo
 lang: en
@@ -44,7 +44,7 @@ This milestone represents a great opportunity today to address one of the main s
 
 The City Council of Sant Boi de Llobregat (Catalonia) asked to the Universitat Politècnica de Catalunya for a study on the Energy Efficiency of buildings in certain districts of this town.
 
-Buildings taken into account for the study are those which were built before 1980, according to the reasons given in the previous introduction.
+Buildings taken into account for the study are those which were built before 1980, according to the reasons given in the previous introductory post.
 
 For this purpose, data were collected from more than 800 buildings.
 

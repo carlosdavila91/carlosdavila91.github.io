@@ -8,10 +8,14 @@ redirect_from:
   - /about.html
 ---
 
-One of my main features is that **I do love learning**. I don't say it carelessly. I mean it. Learning new things is in my top 3 of things that I love to do the most. I consider myself good at it and I'm doing it constantly.
+👋 Welcome!
 
-That was what lead me to make a career shift towards Data Science from a background in Architecture. It may seem unconnected, but in the end, all of my experience and education is related to data somehow.
+My name is Carlos Dávila and I'm currently a Data Consultant.
 
-By now, I'm proud to have been capable of learning by myself most of the things that it takes to be a Data Analyst or Scientist. However, in line with one of my _late-motives_, I keep educating myself.
+I made a career transition from a background in Technical Architecture to Data Science. It may seem unconnected, but along the way, all of my experience and recent training have been related to data somehow.
 
-My current interests, and mostly the things that guide my lifetime projects now are **Data Analysis and Science** and things like statistics and math. But also I'm passionate about **Sustainability**. The job that I'd love to have would be related to both fields. In the meantime, I'll keep working to achieve it!
+I believe that the things that lead me to follow this path are the willingness to learn, motivation, be open-minded and tons of patience to deal with errors in code.
+
+I do **Data Science and Analysis**. Also, I'm very into **Sustainability**.
+
+You can find some notes about my learning journey and some thoughts in my blog.

@@ -24,7 +24,7 @@ However, this time I wanted to add a personal touch to the publication. I added 
 
 But let's get down to business! I start loading the prepared data.
 
-```Python
+```python
 df = pd.read_csv("prepared.csv")
 ```
 
@@ -35,7 +35,7 @@ The strategy here will be to create a plot for each year via iteration and then 
 First of all, we must load the necessary packages. When using matplotlib in jupyter notebooks, I think it is great to use this little hack in the configuration &mdash;`%config InlineBackedn.figure_format='retina'`&mdash; to improve the quality of the outcoming plots.
 
 
-```Python
+```python
 import matplotlib.pyplot as plt
 import seaborn as sns
 %config InlineBackend.figure_format ='retina'
@@ -44,7 +44,7 @@ import seaborn as sns
 I like modifying a few parameters on seaborn style to get a nice eye-catching result, and an adequate resolution for the plot.
 
 
-```Python
+```python
 sns.set_style('whitegrid',{'grid.color':'.8'})
 my_dpi=100
 ```
@@ -52,7 +52,7 @@ my_dpi=100
 To group by Continent later, I found it is necesary to transform this variable into categorical. I do it at this point as a preparation step.
 
 
-```Python
+```python
 df['continent']=pd.Categorical(df['continent'])
 ```
 
@@ -61,7 +61,7 @@ Something I had to do to get my animated scatterplot with `matplotlib` was to pl
 Furthermore, the amount of countries above the CO$_2$ Emissions limit of 30 are few and happens occasionaly. A common procedure when this occurs is further investigating these cases. You'd need to understand if you are dealing with outliers or errors in data. Although, this is out of the reach of this publication.
 
 
-```Python
+```python
 xmin = int(df['gdp_per_capita'].min())
 xmax = int(df['gdp_per_capita'].max())
 
@@ -86,7 +86,7 @@ If you don't want the markers sticking out of the legend this step is mandatory.
 So, we have to create a function to update the `handles` parameter ([see help(plt.axes.Axes.legend)`](https://matplotlib.org/3.1.0/api/_as_gen/matplotlib.axes.Axes.legend.html#matplotlib.axes.Axes.legend)) in the `plt.legend()` function as the iteration through time goes by.
 
 
-```Python
+```python
 from matplotlib.legend_handler import HandlerPathCollection
 
 marker_size = 36
@@ -98,7 +98,7 @@ def update_prop(handle, orig):
 Then, you have to pass a dict to the `handler_map` parameter inside the `plt.legend()` funtion as you can see in the code chunk bellow.
 
 
-```Python
+```python
 # Some colors chosen from http://www.visibone.com/colorlab/
 cdict = {
     "Asia": "#999900",
@@ -147,7 +147,7 @@ for i in df.year.unique():
 The result set of `.png` is saved and then transformed from png to GIF. For this I used the `PIL` package and `glob` to read the files.
 
 
-```Python
+```python
 from PIL import Image
 import glob
 
@@ -188,7 +188,7 @@ Finally, we can display the created gif in a jupyter notebook with markdown lang
 
 # Animating Graphs Using `plotly.express`
 
-```Python
+```python
 import plotly.express as px
 
 fig = px.scatter(df, x="gdp_per_capita", y="co2_per_capita", animation_frame="year",
@@ -206,7 +206,7 @@ When wirting a post like this one, you need to save the result to then display i
 To sum up, after creating the plot, we must save it into an `.html` file to then display it. The file must include a link to the `plotly.js` library. That's why it is mandatory to use this `include_plotlyjs='cdn'` parameter when saving the plot. See the Matteo's blog post for more detail on how this works.
 
 
-```Python
+```python
 with open('plotly_graph.html', 'w') as f:
     f.write(fig.to_html(include_plotlyjs='cdn'))
 ```
