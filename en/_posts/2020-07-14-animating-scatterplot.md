@@ -183,7 +183,7 @@ Finally, we can display the created gif in a jupyter notebook with markdown lang
 ```
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/animating_graphs/png_to_gif.gif">
+  <img src="{{site.baseurl}}/images/blog/animating_graphs/png_to_gif.gif">
 </p>
 
 # Animating Graphs Using `plotly.express`

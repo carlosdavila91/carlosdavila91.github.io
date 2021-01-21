@@ -22,7 +22,7 @@ Univariate Exploratory Data Analysis to understand the information gathered for 
 The study is oriented to the districts of [Marianao](https://www.google.es/maps/place/Marianao/@41.3479877,2.0263476,1045m/data=!3m1!1e3!4m5!3m4!1s0x12a49b822306e79d:0x3297c05bdd8c8ad1!8m2!3d41.3487888!4d2.0287207) and [Vinyets](https://www.google.es/maps/@41.3374306,2.0438772,919m/data=!3m1!1e3), according to the conditions established by the municipality.
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/barrio.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/barrio.png">
 </p>
 
 MARIANAO| VINYETS
@@ -32,7 +32,7 @@ MARIANAO| VINYETS
 ### Decade
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/decada.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/decada.png">
 </p>
 
 Before 1899| From 1900 to 1940| From 1941 to 1960| From 1961 to 1970| From 1971 to 1980
@@ -46,7 +46,7 @@ This city suffered a vast growth during periods of strong internal migration in 
 Orientation is one of the most important factors when it comes to energy efficiency of households.
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/orientacion.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/orientacion.png">
 </p>
 
 N| S|   E|   W| SE |NE| NW| SW
@@ -66,7 +66,7 @@ These specificities are very relative in an urban environment with buildings loc
 ### Number of dwellings
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/viviendas.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/viviendas.png">
 </p>
 
 Detached |From 2 to 4 dwellings| From 5 to 9 dwellings| From 10 to 19 dwellings| From 20 to 39 dwellings| More than 40 dwellings
@@ -80,7 +80,7 @@ From another point of view, it would determine the ratio "money invested" over "
 ### Number of floors
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/plantas.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/plantas.png">
 </p>
 
 1 floor|   2 floors|   3 floors|  4 floors|   5 floors|  6 floors|  7 floors|  8 floors
@@ -96,7 +96,7 @@ Although it is a numerical variable, it will be considered as a categorical one,
 ### Use of the ground floor
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/pbaja.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/pbaja.png">
 </p>
 
  Dwelling| Commercial| Storage| Industrial
@@ -112,7 +112,7 @@ When the adjacent space is intended for a different use than this, it is not gua
 ### Type of facade
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/fachadas.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/fachadas.png">
 </p>
 
 F1| F2|  F3
@@ -126,7 +126,7 @@ Essentially this nomenclature correspond to specific and commmon construction sy
 * F3: Facade walls with air chamber of 15/10/5 cm
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/Facades.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/Facades.png">
 </p>
 
 Each has its associated transmittance value. This physical property affects to the ability of the material system to keep heat or cold inside the home. This is the intuition under the following variables which classify other physical elements of buildings.
@@ -134,7 +134,7 @@ Each has its associated transmittance value. This physical property affects to t
 ### Types of Roof
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/cubiertas.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/cubiertas.png">
 </p>
 
 C1|  C2|  C3|  C4|
@@ -151,7 +151,7 @@ Once again, this variable deals with the transmittance in different cases:
 ### Types of facade opening
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/huecos.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/huecos.png">
 </p>
 
 H1|  H2|  H3|  H4|  H5|
@@ -169,7 +169,7 @@ In this case the different categories are mainly determined by whether or not th
 ### Types of party wall
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/medianeras.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/medianeras.png">
 </p>
 
 0|  M1|  M2|  M3|
@@ -192,7 +192,7 @@ The variables represented in the next multivariate plot (credits for [Barret Sch
 * Surface Touching the Ground
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/continuas.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/continuas.png">
 </p>
 
 Strong correlations appear between these physical characteristics of buildings.
@@ -202,7 +202,7 @@ When we distinguish buildings by district there are not clear differences, excep
 As we can see, buildings with similar number of heights present similar physical characteristics.
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/densidad.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/densidad.png">
 </p>
 
 All the information gathered here was taken into account in order to reach the aim of the study developed for the Sant Boi de Llobregat City Council.

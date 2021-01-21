@@ -187,7 +187,7 @@ O, como he hecho para este blog, con `HTML`.
 ```
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/animating_graphs/png_to_gif.gif">
+  <img src="{{site.baseurl}}/images/blog/animating_graphs/png_to_gif.gif">
 </p>
 
 # Animating Graphs Using `plotly.express`

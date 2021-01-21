@@ -16,7 +16,7 @@ tags:
 There are several moments of history in which an explosion of the construction sector occurs. Those are mainly between the beginning of 60's, with a massive migration from the countryside to the city; and at the beginning of the 90's until the year 2008, when the big international financial crisis begun.
 
 <p align="center">
-  <img src="{{site.baseurl}}/images/sant-boi-eda/census.png">
+  <img src="{{site.baseurl}}/images/blog/sant-boi-eda/census.png">
 </p>
 <a id='final-energy-consumption'></a>
 ### Final Energy Consumption by sector in Spain
