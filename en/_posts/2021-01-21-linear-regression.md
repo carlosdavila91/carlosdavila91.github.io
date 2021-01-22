@@ -1,19 +1,20 @@
 ---
 title: "Linear Regression with R"
 author: "Carlos Dávila Luelmo"
-date: "18/1/2021"
+date: "2021-01-21"
 output:
   html_document:
     keep_md: true
+    tags: [R, Linear Regression, Statistics, Inference, Housing]
 ---
 
-# Introduction
 
-In this blog entry, I'd like to showcase a Linear Regression implementation. I'll do it with a data set about housing and `R`. And I assume that you readers have a base knowledge about statistical inference.
+
+In this blog entry, I'd like to showcase a Linear Regression implementation. I'll do it with a data set about housing and `R`. Moreover, I assume that you readers have a base knowledge about statistical inference.
 
 The aim here is to use a Linear Regression model, concentrating more on inference than prediction (although we can perform it anyway)—-this way, we focus more on the relationships between the variables rather than the model's prediction power.
 
-A Linear Regression is a math model that is used to approach the dependence relationships between a dependent variable $Y$, a set of independent variables $X_i$ and a random term $\varepsilon$ (randomness is key, keep it in mind for later). Its equation has this form:
+A Linear Regression is a math model used to approach the dependence relationships between a dependent variable $Y$, a set of independent variables $X_i$, and a random term $\varepsilon$. Its equation has this form:
 
 $$
 Y_t = \beta_0 + \beta_1 \cdot X_1 + \beta_2 \cdot X_2 + ... + + \beta_p \cdot X_p + \varepsilon
@@ -21,21 +22,21 @@ $$
 
 Simply put, the linear regression attempts to **generalize the relation between two or more variables** by minimizing the distance between every data point and the line. That is why we say that it uses the least-squares method to fit the model.
 
-I won’t get into many details, as it’s a widely known concept. You can find multiple excellent explanations and resources out there if you do a quick search for the term at the search engine of your preference.
+I will not get into many details, as it is a widely known concept. You can find multiple excellent explanations and resources out there if you do a quick search for the term at the search engine of your preference.
 
 Another thing to point out about linear regression is that it is a relatively simple model. We can understand and so explain what is doing under the hood when we analyze it. It is one of the most used Machine Learning algorithms for that reason.
 
 The variable that we want to model here is the house's price, as you will see afterward.
 
-The aim is to go through the modeling process. It’ll be more enjoyable for you if I show a hands-on implementation of linear regression.
+The aim is to go through the modeling process. It will be more enjoyable for you if I show a hands-on implementation of linear regression.
 
-## Significance level and performance metric
+## The level of significance and the performance metric
 
 Before We go into the action, I'll spot some assumptions to have them in mind throughout the exercise.
 
 The **significance's level** established for our purpose will be an $\alpha = 0.05$. It is an often confusing term to explain. For me, the best way to put it is this.
 
-In statistics, we are often testing a hypothesis. But we are pessimistic guys, so we usually try the opposite of the hypothesis we want to prove. For example, when we want to check if a variable is normally distributed, we test if it is not normally distributed as our initial hypothesis.
+In statistics, we are often testing a hypothesis. However, we are pessimistic guys, so we usually try the opposite of the hypothesis we want to prove. For example, when we want to check if a variable is normally distributed, we test if it is not normally distributed as our initial hypothesis.
 
 The significance level is the probability that we have to get the result if our initial hypothesis (or null hypothesis) is correct. That means if we have a chance to find this result lower than our $\alpha = 0.05$ --a very low probability--we reject the null hypothesis and vice versa.
 
@@ -43,20 +44,20 @@ I choose this $\alpha$ because it's a convention, but we may have selected anoth
 
 **The performance metric** most used in a Linear Regression is the determination coefficient $R^2$--or its cousin, the adjusted $R^2$. In short, it measures the proportion of variability contained in our data explained by the corresponding model. It ranges between 0 and 1.
 
-Think about the model as a way of generalizing knowledge. If it explains more variability, it will be better predicting when you feed it with a new observation.
+Think about the model as a way of generalizing. You do this all the time. For instance, imagine that you have a model in your mind regarding roses that generalize your knowledge about roses following the expression: "All roses are red or white". Your model cannot explain the variability that you will find if you, let's say, do a quick search about roses on DuckDuckGo.
 
 With this established, we can commence.
 
-## Creating the working environment
+## The working environment
 
-First of all, set the working libraries that you’ll need. Remember to keep it tidy. The fewer dependencies, the more durable and reproducible the work will be.
+First of all, set the working libraries that you will need. Remember to keep it tidy. The fewer dependencies, the more durable and reproducible the work will be.
 
-I’ll use my favorite `R` libraries like the `tidyverse` package, but this is only a possible solution.
+I will use my favorite `R` libraries like the `tidyverse` package, but this is only a possible solution.
 
 
 ```r
 library(tidyverse)
-library(ggthemes)
+library(GGally)
 library(caret)
 
 theme_set(theme_bw())
@@ -78,7 +79,9 @@ my_kable <- function(table, ...){
 }
 ```
 
-## The Data set
+
+
+## The Dataset
 
 The data set that I used for this blog post is about housing. It is aggregated at the district level and anonymized.
 
@@ -207,7 +210,7 @@ house <- read_csv("house_clean.csv")
 
 # Descriptive Analysis and Visualization
 
-Once you've digested the context, the next step is to take a glimpse at the structure of our data.
+Once you've digested the context, the next step is to take a glimpse at our data structure.
 
 I'll show a statistical description of numeric and categorical data. This way, we will characterize the variable types, detect possible missing values, outliers, or variables without or with almost no variance.
 
@@ -240,152 +243,152 @@ house %>%
 <tbody>
   <tr>
    <td style="text-align:left;"> price </td>
-   <td style="text-align:right;"> 5.00 </td>
-   <td style="text-align:right;"> 17.02 </td>
-   <td style="text-align:right;"> 21.20 </td>
-   <td style="text-align:right;"> 22.53 </td>
-   <td style="text-align:right;"> 25.00 </td>
-   <td style="text-align:right;"> 50.00 </td>
+   <td style="text-align:right;"> 5.0000 </td>
+   <td style="text-align:right;"> 17.0250 </td>
+   <td style="text-align:right;"> 21.2000 </td>
+   <td style="text-align:right;"> 22.5289 </td>
+   <td style="text-align:right;"> 25.0000 </td>
+   <td style="text-align:right;"> 50.0000 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> resid_area </td>
-   <td style="text-align:right;"> 30.46 </td>
-   <td style="text-align:right;"> 35.19 </td>
-   <td style="text-align:right;"> 39.69 </td>
-   <td style="text-align:right;"> 41.14 </td>
-   <td style="text-align:right;"> 48.10 </td>
-   <td style="text-align:right;"> 57.74 </td>
+   <td style="text-align:right;"> 30.4600 </td>
+   <td style="text-align:right;"> 35.1900 </td>
+   <td style="text-align:right;"> 39.6900 </td>
+   <td style="text-align:right;"> 41.1368 </td>
+   <td style="text-align:right;"> 48.1000 </td>
+   <td style="text-align:right;"> 57.7400 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> air_qual </td>
-   <td style="text-align:right;"> 0.38 </td>
-   <td style="text-align:right;"> 0.45 </td>
-   <td style="text-align:right;"> 0.54 </td>
-   <td style="text-align:right;"> 0.55 </td>
-   <td style="text-align:right;"> 0.62 </td>
-   <td style="text-align:right;"> 0.87 </td>
+   <td style="text-align:right;"> 0.3850 </td>
+   <td style="text-align:right;"> 0.4490 </td>
+   <td style="text-align:right;"> 0.5380 </td>
+   <td style="text-align:right;"> 0.5547 </td>
+   <td style="text-align:right;"> 0.6240 </td>
+   <td style="text-align:right;"> 0.8710 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> room_num </td>
-   <td style="text-align:right;"> 3.56 </td>
-   <td style="text-align:right;"> 5.89 </td>
-   <td style="text-align:right;"> 6.21 </td>
-   <td style="text-align:right;"> 6.28 </td>
-   <td style="text-align:right;"> 6.62 </td>
-   <td style="text-align:right;"> 8.78 </td>
+   <td style="text-align:right;"> 3.5610 </td>
+   <td style="text-align:right;"> 5.8855 </td>
+   <td style="text-align:right;"> 6.2085 </td>
+   <td style="text-align:right;"> 6.2846 </td>
+   <td style="text-align:right;"> 6.6235 </td>
+   <td style="text-align:right;"> 8.7800 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> age </td>
-   <td style="text-align:right;"> 2.90 </td>
-   <td style="text-align:right;"> 45.02 </td>
-   <td style="text-align:right;"> 77.50 </td>
-   <td style="text-align:right;"> 68.57 </td>
-   <td style="text-align:right;"> 94.07 </td>
-   <td style="text-align:right;"> 100.00 </td>
+   <td style="text-align:right;"> 2.9000 </td>
+   <td style="text-align:right;"> 45.0250 </td>
+   <td style="text-align:right;"> 77.5000 </td>
+   <td style="text-align:right;"> 68.5749 </td>
+   <td style="text-align:right;"> 94.0750 </td>
+   <td style="text-align:right;"> 100.0000 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> dist1 </td>
-   <td style="text-align:right;"> 1.13 </td>
-   <td style="text-align:right;"> 2.27 </td>
-   <td style="text-align:right;"> 3.38 </td>
-   <td style="text-align:right;"> 3.97 </td>
-   <td style="text-align:right;"> 5.37 </td>
-   <td style="text-align:right;"> 12.32 </td>
+   <td style="text-align:right;"> 1.1300 </td>
+   <td style="text-align:right;"> 2.2700 </td>
+   <td style="text-align:right;"> 3.3850 </td>
+   <td style="text-align:right;"> 3.9720 </td>
+   <td style="text-align:right;"> 5.3675 </td>
+   <td style="text-align:right;"> 12.3200 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> dist2 </td>
-   <td style="text-align:right;"> 0.92 </td>
-   <td style="text-align:right;"> 1.94 </td>
-   <td style="text-align:right;"> 3.01 </td>
-   <td style="text-align:right;"> 3.63 </td>
-   <td style="text-align:right;"> 4.99 </td>
-   <td style="text-align:right;"> 11.93 </td>
+   <td style="text-align:right;"> 0.9200 </td>
+   <td style="text-align:right;"> 1.9400 </td>
+   <td style="text-align:right;"> 3.0100 </td>
+   <td style="text-align:right;"> 3.6288 </td>
+   <td style="text-align:right;"> 4.9925 </td>
+   <td style="text-align:right;"> 11.9300 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> dist3 </td>
-   <td style="text-align:right;"> 1.15 </td>
-   <td style="text-align:right;"> 2.23 </td>
-   <td style="text-align:right;"> 3.38 </td>
-   <td style="text-align:right;"> 3.96 </td>
-   <td style="text-align:right;"> 5.41 </td>
-   <td style="text-align:right;"> 12.32 </td>
+   <td style="text-align:right;"> 1.1500 </td>
+   <td style="text-align:right;"> 2.2325 </td>
+   <td style="text-align:right;"> 3.3750 </td>
+   <td style="text-align:right;"> 3.9607 </td>
+   <td style="text-align:right;"> 5.4075 </td>
+   <td style="text-align:right;"> 12.3200 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> dist4 </td>
-   <td style="text-align:right;"> 0.73 </td>
-   <td style="text-align:right;"> 1.94 </td>
-   <td style="text-align:right;"> 3.07 </td>
-   <td style="text-align:right;"> 3.62 </td>
-   <td style="text-align:right;"> 4.99 </td>
-   <td style="text-align:right;"> 11.94 </td>
+   <td style="text-align:right;"> 0.7300 </td>
+   <td style="text-align:right;"> 1.9400 </td>
+   <td style="text-align:right;"> 3.0700 </td>
+   <td style="text-align:right;"> 3.6190 </td>
+   <td style="text-align:right;"> 4.9850 </td>
+   <td style="text-align:right;"> 11.9400 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> teachers </td>
-   <td style="text-align:right;"> 18.00 </td>
-   <td style="text-align:right;"> 19.80 </td>
-   <td style="text-align:right;"> 20.95 </td>
-   <td style="text-align:right;"> 21.54 </td>
-   <td style="text-align:right;"> 22.60 </td>
-   <td style="text-align:right;"> 27.40 </td>
+   <td style="text-align:right;"> 18.0000 </td>
+   <td style="text-align:right;"> 19.8000 </td>
+   <td style="text-align:right;"> 20.9500 </td>
+   <td style="text-align:right;"> 21.5445 </td>
+   <td style="text-align:right;"> 22.6000 </td>
+   <td style="text-align:right;"> 27.4000 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> poor_prop </td>
-   <td style="text-align:right;"> 1.73 </td>
-   <td style="text-align:right;"> 6.95 </td>
-   <td style="text-align:right;"> 11.36 </td>
-   <td style="text-align:right;"> 12.65 </td>
-   <td style="text-align:right;"> 16.96 </td>
-   <td style="text-align:right;"> 37.97 </td>
+   <td style="text-align:right;"> 1.7300 </td>
+   <td style="text-align:right;"> 6.9500 </td>
+   <td style="text-align:right;"> 11.3600 </td>
+   <td style="text-align:right;"> 12.6531 </td>
+   <td style="text-align:right;"> 16.9550 </td>
+   <td style="text-align:right;"> 37.9700 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> n_hos_beds </td>
-   <td style="text-align:right;"> 5.27 </td>
-   <td style="text-align:right;"> 6.63 </td>
-   <td style="text-align:right;"> 8.00 </td>
-   <td style="text-align:right;"> 7.90 </td>
-   <td style="text-align:right;"> 9.09 </td>
-   <td style="text-align:right;"> 10.88 </td>
+   <td style="text-align:right;"> 5.2680 </td>
+   <td style="text-align:right;"> 6.6345 </td>
+   <td style="text-align:right;"> 7.9990 </td>
+   <td style="text-align:right;"> 7.8998 </td>
+   <td style="text-align:right;"> 9.0880 </td>
+   <td style="text-align:right;"> 10.8760 </td>
    <td style="text-align:right;"> 8 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> n_hot_rooms </td>
-   <td style="text-align:right;"> 10.06 </td>
-   <td style="text-align:right;"> 100.59 </td>
-   <td style="text-align:right;"> 117.28 </td>
-   <td style="text-align:right;"> 98.82 </td>
-   <td style="text-align:right;"> 141.10 </td>
-   <td style="text-align:right;"> 153.90 </td>
+   <td style="text-align:right;"> 10.0600 </td>
+   <td style="text-align:right;"> 100.5940 </td>
+   <td style="text-align:right;"> 117.2840 </td>
+   <td style="text-align:right;"> 98.8172 </td>
+   <td style="text-align:right;"> 141.1000 </td>
+   <td style="text-align:right;"> 153.9040 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> rainfall </td>
-   <td style="text-align:right;"> 3.00 </td>
-   <td style="text-align:right;"> 28.00 </td>
-   <td style="text-align:right;"> 39.00 </td>
-   <td style="text-align:right;"> 39.18 </td>
-   <td style="text-align:right;"> 50.00 </td>
-   <td style="text-align:right;"> 60.00 </td>
+   <td style="text-align:right;"> 3.0000 </td>
+   <td style="text-align:right;"> 28.0000 </td>
+   <td style="text-align:right;"> 39.0000 </td>
+   <td style="text-align:right;"> 39.1818 </td>
+   <td style="text-align:right;"> 50.0000 </td>
+   <td style="text-align:right;"> 60.0000 </td>
    <td style="text-align:right;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> parks </td>
-   <td style="text-align:right;"> 0.03 </td>
-   <td style="text-align:right;"> 0.05 </td>
-   <td style="text-align:right;"> 0.05 </td>
-   <td style="text-align:right;"> 0.05 </td>
-   <td style="text-align:right;"> 0.06 </td>
-   <td style="text-align:right;"> 0.09 </td>
+   <td style="text-align:right;"> 0.0333 </td>
+   <td style="text-align:right;"> 0.0465 </td>
+   <td style="text-align:right;"> 0.0535 </td>
+   <td style="text-align:right;"> 0.0545 </td>
+   <td style="text-align:right;"> 0.0614 </td>
+   <td style="text-align:right;"> 0.0867 </td>
    <td style="text-align:right;">  </td>
   </tr>
 </tbody>
@@ -396,12 +399,12 @@ house %>%
 
 Let's do some plots!
 
-First, a scatter matrix that will give us a lot of relevant information. It has:
+First, a scatter matrix that will give us much relevant information. It has:
 
 + the response variable of our model, `price`, plotted against the rest of the variables;
 + frequency diagrams at the diagonal, so you get a glance of the data distribution;
 + scatter plots at the bottom to see how variables are related to each other, and
-+ Pearson’s correlation coefficients at the upper section. [Check this wikipedia article](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) if you are not famliar with it.
++ Pearson's correlation coefficients at the upper section. [Check this Wikipedia article](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) if you are not familiar with it.
 
 
 ```r
@@ -411,8 +414,9 @@ my_ggpairs <- function(data, num_vars){
   data %>%
     filter(across(everything(), ~!is.na(.x))) %>%
     select(!!num_vars) %>%
-    ggpairs(lower = list(continuous = wrap("points", shape = 1, size = .5))) +
+    ggpairs(lower = list(continuous = wrap("points", color = "#333333", shape = 1, size = .5))) +
     theme(axis.text = element_text(size = 6),
+          panel.grid.major.x = element_blank(),
           strip.text.x = element_text(size = rel(.8)),
           strip.text.y = element_text(size = rel(.6)))  
 }
@@ -430,9 +434,9 @@ house %>% my_ggpairs(c(price, dist4:parks, -airport, -waterbody, -bus_ter))
 
 Maybe, you have noticed that:
 
-+ Variables like `room_num`, `teachers`, and `poor_prop`, are linearly related to the `price` feature. It can be glimpsed in the scatter plots, and they present a correlation coefficient between -1 and -0.5 and between 0.5 and 1, meaning that those relationships are considered strong (it’s a convention).
-+ All `dist` variables are highly correlated with each other. This high level of correlation between explanatory variables is known as _multicollinearity_. We are interested in linear relationships between predictors and the response variable. But, when predictors are correlated to each other, they do not give us relevant information. Commonly, you only take one of the variables that present _multicolinearity_ and leave the others out of the model.
-+ `n_hot_rooms` takes a range of discrete values, although it is a numeric variable. It has to do with the data collection process or could be a posterior aggregation. By now, let’s consider it as numeric.
++ Variables like `room_num`, `teachers`, and `poor_prop`, are linearly related to the `price` feature. It can be glimpsed in the scatter plots, and they present a correlation coefficient between -1 and -0.5 and between 0.5 and 1, meaning that those relationships are considered strong (it is a convention).
++ All `dist` variables are highly correlated with each other. This high level of correlation between explanatory variables is known as _multicollinearity_. We are interested in linear relationships between predictors and the response variable. Nevertheless, when predictors are correlated to each other, they do not give us relevant information. Commonly, you only take one of the variables that present _multicolinearity_ and leave the others out of the model.
++ `n_hot_rooms` takes a range of discrete values, although it is a numeric variable. It has to do with the data collection process or could be a posterior aggregation. By now, let's consider it as numeric.
 + Our response variable, `price`, seems to have a distribution close to the normal distribution.
 + Other distributions are skewed to the left or the right. As a follow-up to this exercise, we could try to transform these variables with the appropriate transformation for each case to verify if they would improve our model performance.
 
@@ -515,85 +519,85 @@ map_dfr(
 <tbody>
   <tr>
    <td style="text-align:left;"> price </td>
-   <td style="text-align:right;"> 9.18 </td>
-   <td style="text-align:right;"> 84.31 </td>
+   <td style="text-align:right;"> 9.1822 </td>
+   <td style="text-align:right;"> 84.3124 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> resid_area </td>
-   <td style="text-align:right;"> 6.86 </td>
-   <td style="text-align:right;"> 47.06 </td>
+   <td style="text-align:right;"> 6.8604 </td>
+   <td style="text-align:right;"> 47.0644 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> air_qual </td>
-   <td style="text-align:right;"> 0.12 </td>
-   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.1159 </td>
+   <td style="text-align:right;"> 0.0134 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> room_num </td>
-   <td style="text-align:right;"> 0.70 </td>
-   <td style="text-align:right;"> 0.49 </td>
+   <td style="text-align:right;"> 0.7026 </td>
+   <td style="text-align:right;"> 0.4937 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> age </td>
-   <td style="text-align:right;"> 28.15 </td>
-   <td style="text-align:right;"> 792.36 </td>
+   <td style="text-align:right;"> 28.1489 </td>
+   <td style="text-align:right;"> 792.3584 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> dist1 </td>
-   <td style="text-align:right;"> 2.11 </td>
-   <td style="text-align:right;"> 4.45 </td>
+   <td style="text-align:right;"> 2.1085 </td>
+   <td style="text-align:right;"> 4.4459 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> dist2 </td>
-   <td style="text-align:right;"> 2.11 </td>
-   <td style="text-align:right;"> 4.45 </td>
+   <td style="text-align:right;"> 2.1086 </td>
+   <td style="text-align:right;"> 4.4461 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> dist3 </td>
-   <td style="text-align:right;"> 2.12 </td>
-   <td style="text-align:right;"> 4.49 </td>
+   <td style="text-align:right;"> 2.1198 </td>
+   <td style="text-align:right;"> 4.4935 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> dist4 </td>
-   <td style="text-align:right;"> 2.10 </td>
-   <td style="text-align:right;"> 4.41 </td>
+   <td style="text-align:right;"> 2.0992 </td>
+   <td style="text-align:right;"> 4.4067 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> teachers </td>
-   <td style="text-align:right;"> 2.16 </td>
-   <td style="text-align:right;"> 4.69 </td>
+   <td style="text-align:right;"> 2.1649 </td>
+   <td style="text-align:right;"> 4.6870 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> poor_prop </td>
-   <td style="text-align:right;"> 7.14 </td>
-   <td style="text-align:right;"> 50.99 </td>
+   <td style="text-align:right;"> 7.1411 </td>
+   <td style="text-align:right;"> 50.9948 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> n_hos_beds </td>
-   <td style="text-align:right;"> 1.48 </td>
-   <td style="text-align:right;"> 2.18 </td>
+   <td style="text-align:right;"> 1.4767 </td>
+   <td style="text-align:right;"> 2.1806 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> n_hot_rooms </td>
-   <td style="text-align:right;"> 51.58 </td>
-   <td style="text-align:right;"> 2660.35 </td>
+   <td style="text-align:right;"> 51.5786 </td>
+   <td style="text-align:right;"> 2660.3489 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> rainfall </td>
-   <td style="text-align:right;"> 12.51 </td>
-   <td style="text-align:right;"> 156.59 </td>
+   <td style="text-align:right;"> 12.5137 </td>
+   <td style="text-align:right;"> 156.5926 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> parks </td>
-   <td style="text-align:right;"> 0.01 </td>
-   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.0106 </td>
+   <td style="text-align:right;"> 0.0001 </td>
   </tr>
 </tbody>
 </table>
 
 We can now see that `air_qual` has a very low standard deviation and variance, and `parks` shows near-zero variance.
 
-Both quantitative features ranges are very narrow, as we saw at the beginning of this section. In advance, we'd think that those near-zero variances mean that the variables do not hold decisive information. But we have to be sure before removing any information at all of the data set.
+Both quantitative features ranges are very narrow, as we saw at the beginning of this section. In advance, we'd think that those near-zero variances mean that the variables do not hold decisive information. However, we have to be sure before removing any information at all of the data set.
 
 One way to double-check it is using the `caret` package. It has the `nearZeroVar()` function to analyze this.
 
@@ -615,134 +619,134 @@ nearZeroVar(house, saveMetrics = TRUE) %>% my_kable(full_width = FALSE)
 <tbody>
   <tr>
    <td style="text-align:left;"> price </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> 45.06 </td>
+   <td style="text-align:right;"> 2.000 </td>
+   <td style="text-align:right;"> 45.0593 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> resid_area </td>
-   <td style="text-align:right;"> 2.7 </td>
-   <td style="text-align:right;"> 4.15 </td>
+   <td style="text-align:right;"> 4.400 </td>
+   <td style="text-align:right;"> 15.0198 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> air_qual </td>
-   <td style="text-align:right;"> 1.1 </td>
-   <td style="text-align:right;"> 6.72 </td>
+   <td style="text-align:right;"> 1.278 </td>
+   <td style="text-align:right;"> 16.0079 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> room_num </td>
-   <td style="text-align:right;"> 1.1 </td>
-   <td style="text-align:right;"> 8.89 </td>
+   <td style="text-align:right;"> 1.000 </td>
+   <td style="text-align:right;"> 88.1423 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> age </td>
-   <td style="text-align:right;"> 10.8 </td>
-   <td style="text-align:right;"> 70.36 </td>
+   <td style="text-align:right;"> 10.750 </td>
+   <td style="text-align:right;"> 70.3557 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> dist1 </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> 15.61 </td>
+   <td style="text-align:right;"> 1.000 </td>
+   <td style="text-align:right;"> 66.9960 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> dist2 </td>
-   <td style="text-align:right;"> 1.2 </td>
-   <td style="text-align:right;"> 69.96 </td>
+   <td style="text-align:right;"> 1.200 </td>
+   <td style="text-align:right;"> 69.9605 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> dist3 </td>
-   <td style="text-align:right;"> 1.1 </td>
-   <td style="text-align:right;"> 16.60 </td>
+   <td style="text-align:right;"> 1.000 </td>
+   <td style="text-align:right;"> 66.9960 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> dist4 </td>
-   <td style="text-align:right;"> 1.4 </td>
-   <td style="text-align:right;"> 69.76 </td>
+   <td style="text-align:right;"> 1.400 </td>
+   <td style="text-align:right;"> 69.7628 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> teachers </td>
-   <td style="text-align:right;"> 2.2 </td>
-   <td style="text-align:right;"> 1.98 </td>
+   <td style="text-align:right;"> 4.118 </td>
+   <td style="text-align:right;"> 9.0909 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> poor_prop </td>
-   <td style="text-align:right;"> 1.1 </td>
-   <td style="text-align:right;"> 42.49 </td>
+   <td style="text-align:right;"> 1.000 </td>
+   <td style="text-align:right;"> 89.9209 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> airport </td>
-   <td style="text-align:right;"> 1.2 </td>
-   <td style="text-align:right;"> 0.40 </td>
+   <td style="text-align:right;"> 1.200 </td>
+   <td style="text-align:right;"> 0.3953 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> n_hos_beds </td>
-   <td style="text-align:right;"> 1.3 </td>
-   <td style="text-align:right;"> 11.26 </td>
+   <td style="text-align:right;"> 1.000 </td>
+   <td style="text-align:right;"> 89.7233 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> n_hot_rooms </td>
-   <td style="text-align:right;"> 1.1 </td>
-   <td style="text-align:right;"> 6.13 </td>
+   <td style="text-align:right;"> 1.000 </td>
+   <td style="text-align:right;"> 76.4822 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> waterbody </td>
-   <td style="text-align:right;"> 1.2 </td>
-   <td style="text-align:right;"> 0.79 </td>
+   <td style="text-align:right;"> 1.181 </td>
+   <td style="text-align:right;"> 0.7905 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> rainfall </td>
-   <td style="text-align:right;"> 1.1 </td>
-   <td style="text-align:right;"> 8.30 </td>
+   <td style="text-align:right;"> 1.053 </td>
+   <td style="text-align:right;"> 8.3004 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> bus_ter </td>
-   <td style="text-align:right;"> 0.0 </td>
-   <td style="text-align:right;"> 0.20 </td>
+   <td style="text-align:right;"> 0.000 </td>
+   <td style="text-align:right;"> 0.1976 </td>
    <td style="text-align:left;"> TRUE </td>
    <td style="text-align:left;"> TRUE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> parks </td>
-   <td style="text-align:right;"> 1.2 </td>
-   <td style="text-align:right;"> 9.88 </td>
+   <td style="text-align:right;"> 1.000 </td>
+   <td style="text-align:right;"> 94.4664 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Sold </td>
-   <td style="text-align:right;"> 1.2 </td>
-   <td style="text-align:right;"> 0.40 </td>
+   <td style="text-align:right;"> 1.200 </td>
+   <td style="text-align:right;"> 0.3953 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> FALSE </td>
   </tr>
@@ -789,170 +793,170 @@ house %>% filter(is.na(n_hos_beds)) %>%
 <tbody>
   <tr>
    <td style="text-align:right;"> 19.7 </td>
-   <td style="text-align:right;"> 40 </td>
-   <td style="text-align:right;"> 0.58 </td>
-   <td style="text-align:right;"> 5.4 </td>
-   <td style="text-align:right;"> 73 </td>
-   <td style="text-align:right;"> 2.9 </td>
-   <td style="text-align:right;"> 2.6 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> 2.7 </td>
-   <td style="text-align:right;"> 21 </td>
-   <td style="text-align:right;"> 21.1 </td>
+   <td style="text-align:right;"> 39.69 </td>
+   <td style="text-align:right;"> 0.585 </td>
+   <td style="text-align:right;"> 5.390 </td>
+   <td style="text-align:right;"> 72.9 </td>
+   <td style="text-align:right;"> 2.86 </td>
+   <td style="text-align:right;"> 2.61 </td>
+   <td style="text-align:right;"> 2.98 </td>
+   <td style="text-align:right;"> 2.74 </td>
+   <td style="text-align:right;"> 20.8 </td>
+   <td style="text-align:right;"> 21.14 </td>
    <td style="text-align:left;"> NO </td>
    <td style="text-align:right;">  </td>
-   <td style="text-align:right;"> 122 </td>
+   <td style="text-align:right;"> 121.58 </td>
    <td style="text-align:left;"> River </td>
    <td style="text-align:right;"> 44 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0610 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 22.6 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 0.77 </td>
-   <td style="text-align:right;"> 6.1 </td>
-   <td style="text-align:right;"> 81 </td>
-   <td style="text-align:right;"> 2.8 </td>
-   <td style="text-align:right;"> 2.4 </td>
-   <td style="text-align:right;"> 2.6 </td>
-   <td style="text-align:right;"> 2.3 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 12.7 </td>
+   <td style="text-align:right;"> 48.10 </td>
+   <td style="text-align:right;"> 0.770 </td>
+   <td style="text-align:right;"> 6.112 </td>
+   <td style="text-align:right;"> 81.3 </td>
+   <td style="text-align:right;"> 2.78 </td>
+   <td style="text-align:right;"> 2.38 </td>
+   <td style="text-align:right;"> 2.56 </td>
+   <td style="text-align:right;"> 2.31 </td>
+   <td style="text-align:right;"> 19.8 </td>
+   <td style="text-align:right;"> 12.67 </td>
    <td style="text-align:left;"> NO </td>
    <td style="text-align:right;">  </td>
-   <td style="text-align:right;"> 142 </td>
+   <td style="text-align:right;"> 141.81 </td>
    <td style="text-align:left;"> Lake </td>
    <td style="text-align:right;"> 26 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.07 </td>
+   <td style="text-align:right;"> 0.0742 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 25.0 </td>
-   <td style="text-align:right;"> 41 </td>
-   <td style="text-align:right;"> 0.49 </td>
-   <td style="text-align:right;"> 6.2 </td>
-   <td style="text-align:right;"> 42 </td>
-   <td style="text-align:right;"> 4.2 </td>
-   <td style="text-align:right;"> 3.8 </td>
-   <td style="text-align:right;"> 4.0 </td>
-   <td style="text-align:right;"> 3.9 </td>
-   <td style="text-align:right;"> 21 </td>
-   <td style="text-align:right;"> 9.5 </td>
+   <td style="text-align:right;"> 40.59 </td>
+   <td style="text-align:right;"> 0.489 </td>
+   <td style="text-align:right;"> 6.182 </td>
+   <td style="text-align:right;"> 42.4 </td>
+   <td style="text-align:right;"> 4.15 </td>
+   <td style="text-align:right;"> 3.81 </td>
+   <td style="text-align:right;"> 3.96 </td>
+   <td style="text-align:right;"> 3.87 </td>
+   <td style="text-align:right;"> 21.4 </td>
+   <td style="text-align:right;"> 9.47 </td>
    <td style="text-align:left;"> NO </td>
    <td style="text-align:right;">  </td>
-   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 12.20 </td>
    <td style="text-align:left;"> Lake </td>
    <td style="text-align:right;"> 30 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.0479 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 18.8 </td>
-   <td style="text-align:right;"> 40 </td>
-   <td style="text-align:right;"> 0.55 </td>
-   <td style="text-align:right;"> 5.9 </td>
-   <td style="text-align:right;"> 93 </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> 2.2 </td>
-   <td style="text-align:right;"> 2.6 </td>
-   <td style="text-align:right;"> 2.1 </td>
-   <td style="text-align:right;"> 22 </td>
-   <td style="text-align:right;"> 16.2 </td>
+   <td style="text-align:right;"> 40.01 </td>
+   <td style="text-align:right;"> 0.547 </td>
+   <td style="text-align:right;"> 5.913 </td>
+   <td style="text-align:right;"> 92.9 </td>
+   <td style="text-align:right;"> 2.55 </td>
+   <td style="text-align:right;"> 2.23 </td>
+   <td style="text-align:right;"> 2.56 </td>
+   <td style="text-align:right;"> 2.07 </td>
+   <td style="text-align:right;"> 22.2 </td>
+   <td style="text-align:right;"> 16.21 </td>
    <td style="text-align:left;"> YES </td>
    <td style="text-align:right;">  </td>
-   <td style="text-align:right;"> 152 </td>
+   <td style="text-align:right;"> 151.50 </td>
    <td style="text-align:left;"> River </td>
    <td style="text-align:right;"> 35 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0576 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 19.7 </td>
-   <td style="text-align:right;"> 36 </td>
-   <td style="text-align:right;"> 0.44 </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> 46 </td>
-   <td style="text-align:right;"> 7.1 </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> 6.6 </td>
-   <td style="text-align:right;"> 23 </td>
-   <td style="text-align:right;"> 13.4 </td>
+   <td style="text-align:right;"> 35.64 </td>
+   <td style="text-align:right;"> 0.439 </td>
+   <td style="text-align:right;"> 5.963 </td>
+   <td style="text-align:right;"> 45.7 </td>
+   <td style="text-align:right;"> 7.08 </td>
+   <td style="text-align:right;"> 6.55 </td>
+   <td style="text-align:right;"> 7.00 </td>
+   <td style="text-align:right;"> 6.63 </td>
+   <td style="text-align:right;"> 23.2 </td>
+   <td style="text-align:right;"> 13.45 </td>
    <td style="text-align:left;"> YES </td>
    <td style="text-align:right;">  </td>
-   <td style="text-align:right;"> 112 </td>
+   <td style="text-align:right;"> 111.58 </td>
    <td style="text-align:left;"> River </td>
    <td style="text-align:right;"> 21 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.0404 </td>
    <td style="text-align:right;"> 1 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 33.8 </td>
-   <td style="text-align:right;"> 34 </td>
-   <td style="text-align:right;"> 0.65 </td>
-   <td style="text-align:right;"> 7.2 </td>
-   <td style="text-align:right;"> 82 </td>
-   <td style="text-align:right;"> 2.1 </td>
-   <td style="text-align:right;"> 1.9 </td>
-   <td style="text-align:right;"> 2.4 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> 27 </td>
-   <td style="text-align:right;"> 9.6 </td>
+   <td style="text-align:right;"> 33.97 </td>
+   <td style="text-align:right;"> 0.647 </td>
+   <td style="text-align:right;"> 7.203 </td>
+   <td style="text-align:right;"> 81.8 </td>
+   <td style="text-align:right;"> 2.12 </td>
+   <td style="text-align:right;"> 1.95 </td>
+   <td style="text-align:right;"> 2.37 </td>
+   <td style="text-align:right;"> 2.01 </td>
+   <td style="text-align:right;"> 27.0 </td>
+   <td style="text-align:right;"> 9.59 </td>
    <td style="text-align:left;"> YES </td>
    <td style="text-align:right;">  </td>
-   <td style="text-align:right;"> 113 </td>
+   <td style="text-align:right;"> 112.70 </td>
    <td style="text-align:left;"> Lake </td>
    <td style="text-align:right;"> 21 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.07 </td>
+   <td style="text-align:right;"> 0.0680 </td>
    <td style="text-align:right;"> 1 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 7.5 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 0.68 </td>
-   <td style="text-align:right;"> 6.8 </td>
-   <td style="text-align:right;"> 91 </td>
-   <td style="text-align:right;"> 1.9 </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> 1.8 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 25.8 </td>
+   <td style="text-align:right;"> 48.10 </td>
+   <td style="text-align:right;"> 0.679 </td>
+   <td style="text-align:right;"> 6.782 </td>
+   <td style="text-align:right;"> 90.8 </td>
+   <td style="text-align:right;"> 1.90 </td>
+   <td style="text-align:right;"> 1.54 </td>
+   <td style="text-align:right;"> 2.04 </td>
+   <td style="text-align:right;"> 1.80 </td>
+   <td style="text-align:right;"> 19.8 </td>
+   <td style="text-align:right;"> 25.79 </td>
    <td style="text-align:left;"> YES </td>
    <td style="text-align:right;">  </td>
-   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 10.06 </td>
    <td style="text-align:left;"> River </td>
    <td style="text-align:right;"> 35 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0646 </td>
    <td style="text-align:right;"> 1 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 8.3 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 0.69 </td>
-   <td style="text-align:right;"> 5.3 </td>
-   <td style="text-align:right;"> 96 </td>
-   <td style="text-align:right;"> 1.8 </td>
-   <td style="text-align:right;"> 1.4 </td>
-   <td style="text-align:right;"> 1.9 </td>
-   <td style="text-align:right;"> 1.8 </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 48.10 </td>
+   <td style="text-align:right;"> 0.693 </td>
+   <td style="text-align:right;"> 5.349 </td>
+   <td style="text-align:right;"> 96.0 </td>
+   <td style="text-align:right;"> 1.75 </td>
+   <td style="text-align:right;"> 1.38 </td>
+   <td style="text-align:right;"> 1.88 </td>
+   <td style="text-align:right;"> 1.80 </td>
    <td style="text-align:right;"> 19.8 </td>
+   <td style="text-align:right;"> 19.77 </td>
    <td style="text-align:left;"> YES </td>
    <td style="text-align:right;">  </td>
-   <td style="text-align:right;"> 151 </td>
+   <td style="text-align:right;"> 150.66 </td>
    <td style="text-align:left;"> River </td>
    <td style="text-align:right;"> 40 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.07 </td>
+   <td style="text-align:right;"> 0.0677 </td>
    <td style="text-align:right;"> 1 </td>
   </tr>
 </tbody>
@@ -960,7 +964,7 @@ house %>% filter(is.na(n_hos_beds)) %>%
 
 No other value in the rest of the features raises suspicion.
 
-Let's replace the missing values in the `n_hos_beds` with the median of the variable. It is just one valid approach, which I consider preferable because you do not lose information. Besides, there are just a few missing values.
+Let's replace the missing values in the `n_hos_beds` with the median of the variable. It is just one valid approach, which I consider preferable because you do not lose information. Besides, there are only a few missing values.
 
 
 ```r
@@ -971,16 +975,16 @@ house_complete <- house %>%
   ))
 ```
 
-Outliers are a pain in the neck when you want to fit a certain type of model. Linear Regression is one of them.
+Outliers are a pain in the neck when you want to fit a particular type of model. Linear Regression is one of them.
 
-A nice tool to detect outliers are box plots.
+An excellent tool to detect outliers are box plots.
 
 
 ```r
 house_complete %>%
   select(all_of(num_vars)) %>%
   pivot_longer(names(.), names_to = "variable", values_to = "valor") %>% ggplot(aes(variable, valor)) +
-  geom_boxplot(outlier.shape = 1) +
+  geom_boxplot(fill = "grey89", outlier.shape = 1) +
   facet_wrap(variable ~ ., scales = "free") +
   labs(x = NULL) +
   theme(axis.text.x = element_blank(),
@@ -1033,128 +1037,128 @@ house_complete %>%
 <tbody>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 0.69 </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 1.6 </td>
-   <td style="text-align:right;"> 1.3 </td>
-   <td style="text-align:right;"> 1.8 </td>
-   <td style="text-align:right;"> 1.3 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 30.6 </td>
+   <td style="text-align:right;"> 48.10 </td>
+   <td style="text-align:right;"> 0.693 </td>
+   <td style="text-align:right;"> 5.453 </td>
+   <td style="text-align:right;"> 100.0 </td>
+   <td style="text-align:right;"> 1.57 </td>
+   <td style="text-align:right;"> 1.26 </td>
+   <td style="text-align:right;"> 1.79 </td>
+   <td style="text-align:right;"> 1.34 </td>
+   <td style="text-align:right;"> 19.8 </td>
+   <td style="text-align:right;"> 30.59 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 9.3 </td>
-   <td style="text-align:right;"> 13 </td>
+   <td style="text-align:right;"> 9.30 </td>
+   <td style="text-align:right;"> 13.04 </td>
    <td style="text-align:left;"> Lake </td>
    <td style="text-align:right;"> 26 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.07 </td>
+   <td style="text-align:right;"> 0.0653 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 12 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 0.61 </td>
-   <td style="text-align:right;"> 5.3 </td>
-   <td style="text-align:right;"> 97 </td>
-   <td style="text-align:right;"> 2.3 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> 2.4 </td>
-   <td style="text-align:right;"> 1.7 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 24.9 </td>
+   <td style="text-align:right;"> 48.10 </td>
+   <td style="text-align:right;"> 0.614 </td>
+   <td style="text-align:right;"> 5.304 </td>
+   <td style="text-align:right;"> 97.3 </td>
+   <td style="text-align:right;"> 2.28 </td>
+   <td style="text-align:right;"> 1.99 </td>
+   <td style="text-align:right;"> 2.41 </td>
+   <td style="text-align:right;"> 1.73 </td>
+   <td style="text-align:right;"> 19.8 </td>
+   <td style="text-align:right;"> 24.91 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 9.3 </td>
-   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 9.34 </td>
+   <td style="text-align:right;"> 15.10 </td>
    <td style="text-align:left;"> Lake </td>
    <td style="text-align:right;"> 39 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0619 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> 52 </td>
-   <td style="text-align:right;"> 0.62 </td>
-   <td style="text-align:right;"> 6.2 </td>
-   <td style="text-align:right;"> 94 </td>
-   <td style="text-align:right;"> 1.9 </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> 1.9 </td>
-   <td style="text-align:right;"> 1.2 </td>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:right;"> 24.2 </td>
+   <td style="text-align:right;"> 51.89 </td>
+   <td style="text-align:right;"> 0.624 </td>
+   <td style="text-align:right;"> 6.174 </td>
+   <td style="text-align:right;"> 93.6 </td>
+   <td style="text-align:right;"> 1.86 </td>
+   <td style="text-align:right;"> 1.54 </td>
+   <td style="text-align:right;"> 1.87 </td>
+   <td style="text-align:right;"> 1.18 </td>
+   <td style="text-align:right;"> 18.8 </td>
+   <td style="text-align:right;"> 24.16 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 5.7 </td>
-   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 5.68 </td>
+   <td style="text-align:right;"> 10.11 </td>
    <td style="text-align:left;"> Lake </td>
    <td style="text-align:right;"> 28 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0570 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 18 </td>
-   <td style="text-align:right;"> 52 </td>
-   <td style="text-align:right;"> 0.62 </td>
-   <td style="text-align:right;"> 6.4 </td>
-   <td style="text-align:right;"> 99 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> 1.6 </td>
-   <td style="text-align:right;"> 1.9 </td>
-   <td style="text-align:right;"> 1.8 </td>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:right;"> 15.4 </td>
+   <td style="text-align:right;"> 51.89 </td>
+   <td style="text-align:right;"> 0.624 </td>
+   <td style="text-align:right;"> 6.431 </td>
+   <td style="text-align:right;"> 98.8 </td>
+   <td style="text-align:right;"> 1.96 </td>
+   <td style="text-align:right;"> 1.61 </td>
+   <td style="text-align:right;"> 1.92 </td>
+   <td style="text-align:right;"> 1.77 </td>
+   <td style="text-align:right;"> 18.8 </td>
+   <td style="text-align:right;"> 15.39 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 8.2 </td>
-   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 8.16 </td>
+   <td style="text-align:right;"> 14.14 </td>
    <td style="text-align:left;"> None </td>
    <td style="text-align:right;"> 41 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0564 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 19 </td>
-   <td style="text-align:right;"> 35 </td>
-   <td style="text-align:right;"> 0.52 </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> 45 </td>
-   <td style="text-align:right;"> 4.9 </td>
-   <td style="text-align:right;"> 4.6 </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> 4.7 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 9.7 </td>
+   <td style="text-align:right;"> 35.19 </td>
+   <td style="text-align:right;"> 0.515 </td>
+   <td style="text-align:right;"> 5.985 </td>
+   <td style="text-align:right;"> 45.4 </td>
+   <td style="text-align:right;"> 4.89 </td>
+   <td style="text-align:right;"> 4.64 </td>
+   <td style="text-align:right;"> 5.05 </td>
+   <td style="text-align:right;"> 4.67 </td>
+   <td style="text-align:right;"> 19.8 </td>
+   <td style="text-align:right;"> 9.74 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 6.4 </td>
-   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 6.38 </td>
+   <td style="text-align:right;"> 11.15 </td>
    <td style="text-align:left;"> Lake </td>
    <td style="text-align:right;"> 28 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.0477 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 36 </td>
-   <td style="text-align:right;"> 0.50 </td>
-   <td style="text-align:right;"> 5.8 </td>
-   <td style="text-align:right;"> 61 </td>
-   <td style="text-align:right;"> 3.4 </td>
-   <td style="text-align:right;"> 3.3 </td>
-   <td style="text-align:right;"> 3.6 </td>
-   <td style="text-align:right;"> 3.2 </td>
-   <td style="text-align:right;"> 21 </td>
-   <td style="text-align:right;"> 11.4 </td>
+   <td style="text-align:right;"> 35.96 </td>
+   <td style="text-align:right;"> 0.499 </td>
+   <td style="text-align:right;"> 5.841 </td>
+   <td style="text-align:right;"> 61.4 </td>
+   <td style="text-align:right;"> 3.39 </td>
+   <td style="text-align:right;"> 3.28 </td>
+   <td style="text-align:right;"> 3.62 </td>
+   <td style="text-align:right;"> 3.22 </td>
+   <td style="text-align:right;"> 20.8 </td>
+   <td style="text-align:right;"> 11.41 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 7.5 </td>
-   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 7.50 </td>
+   <td style="text-align:right;"> 15.16 </td>
    <td style="text-align:left;"> None </td>
    <td style="text-align:right;"> 39 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.0454 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
 </tbody>
@@ -1167,6 +1171,9 @@ There are two things that we can do. Drop those observations or replace the outl
 In another context, we may have the chance to get more information about the data set we are dealing with, but we cannot go any further in this case.
 
 I'll consider these outliers as errors in the data collection process and replace them with a central value like the median.
+
+<span style="color: grey;">In the next code snippet I save my cleaned data in the new `house_prepared` variable.</span>
+
 
 ```r
 house_prepared <- house_complete %>%
@@ -1181,7 +1188,7 @@ Another approach with outliers and normally distributed data is the `z-score`. I
 The process consists in:
 
 + Standardizing the variable by subtracting the mean and dividing each observation with the variable's standard deviation.
-+ Leaving out those values observed at more than three standard deviations of the mean (absolute value of _z_ greater than 3), which will be zero after the standardization.
++ Leaving out those values observed at more than three standard deviations of the mean (absolute value of z greater than 3), which will be zero after the standardization.
 
 It is the case of `room_num`. Now, I'll show you the observations that are outside these boundaries.
 
@@ -1204,36 +1211,36 @@ house_prepared %>%
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:right;"> 3.6 </td>
-   <td style="text-align:right;"> -3.9 </td>
+   <td style="text-align:right;"> 3.561 </td>
+   <td style="text-align:right;"> -3.876 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 3.9 </td>
-   <td style="text-align:right;"> -3.5 </td>
+   <td style="text-align:right;"> 3.863 </td>
+   <td style="text-align:right;"> -3.447 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 4.1 </td>
-   <td style="text-align:right;"> -3.1 </td>
+   <td style="text-align:right;"> 4.138 </td>
+   <td style="text-align:right;"> -3.055 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 4.1 </td>
-   <td style="text-align:right;"> -3.1 </td>
+   <td style="text-align:right;"> 4.138 </td>
+   <td style="text-align:right;"> -3.055 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 8.4 </td>
-   <td style="text-align:right;"> 3.0 </td>
+   <td style="text-align:right;"> 8.398 </td>
+   <td style="text-align:right;"> 3.008 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 8.7 </td>
-   <td style="text-align:right;"> 3.4 </td>
+   <td style="text-align:right;"> 8.704 </td>
+   <td style="text-align:right;"> 3.443 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 8.7 </td>
-   <td style="text-align:right;"> 3.5 </td>
+   <td style="text-align:right;"> 8.725 </td>
+   <td style="text-align:right;"> 3.473 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 8.8 </td>
-   <td style="text-align:right;"> 3.5 </td>
+   <td style="text-align:right;"> 8.780 </td>
+   <td style="text-align:right;"> 3.551 </td>
   </tr>
 </tbody>
 </table>
@@ -1260,9 +1267,14 @@ In this case, I'll focus more on the inferential side of the Linear Regression t
 
 Let's start simple. I'll fit a model with `price` explained by `teachers` and another defined by `poor_prop`.
 
-In `R` we use the formula syntax. It's a very intuitive way of writing your model. You place your target variable on the left-hand side of the formula and the features you want on the right-hand side and split them with a tilde symbol (`target ~ features`).
+In `R`, we use the formula syntax. It's a very intuitive way of writing your model. You place your target variable on the left-hand side of the formula and the features you want on the right-hand side and split them with a tilde symbol (`~`).
+
+<center>
+`target ~ features`
+</center>
 
 The coefficients estimated for the first model are these.
+
 
 ```r
 lm.simple_1 <- lm(price ~ teachers, data = house_prepared)
@@ -1279,11 +1291,11 @@ lm.simple_1$coefficients %>% my_kable(full_width = FALSE)
 <tbody>
   <tr>
    <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:right;"> -23.7 </td>
+   <td style="text-align:right;"> -23.676 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> teachers </td>
-   <td style="text-align:right;"> 2.1 </td>
+   <td style="text-align:right;"> 2.145 </td>
   </tr>
 </tbody>
 </table>
@@ -1292,7 +1304,7 @@ So, we can represent the model with the following expression.
 
 $$\overline{y} = -23.676 +2.145\cdot teachers$$
 
-The coefficients for the second model.
+And the coefficients for the second one.
 
 
 ```r
@@ -1310,16 +1322,16 @@ lm.simple_2$coefficients %>% my_kable(full_width = FALSE)
 <tbody>
   <tr>
    <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:right;"> 34.58 </td>
+   <td style="text-align:right;"> 34.5820 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> poor_prop </td>
-   <td style="text-align:right;"> -0.95 </td>
+   <td style="text-align:right;"> -0.9526 </td>
   </tr>
 </tbody>
 </table>
 
-And the model would be the next.
+Moreover, the model would be the next.
 
 $$\overline{y} = 34.582 -0.953\cdot poor\_prop$$
 
@@ -1350,7 +1362,7 @@ summary(lm.simple_1)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ##
-## Residual standard error: 7.9 on 504 degrees of freedom
+## Residual standard error: 7.93 on 504 degrees of freedom
 ## Multiple R-squared:  0.256,	Adjusted R-squared:  0.254
 ## F-statistic:  173 on 1 and 504 DF,  p-value: <2e-16
 ```
@@ -1375,7 +1387,7 @@ summary(lm.simple_2)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ##
-## Residual standard error: 6.2 on 504 degrees of freedom
+## Residual standard error: 6.17 on 504 degrees of freedom
 ## Multiple R-squared:  0.549,	Adjusted R-squared:  0.548
 ## F-statistic:  613 on 1 and 504 DF,  p-value: <2e-16
 ```
@@ -1396,7 +1408,7 @@ In the model with `poor_prop` as the independent variable:
 title <- "Scatter plot of the model 1"
 house_prepared %>%
   ggplot(aes(teachers, price)) +
-  geom_smooth(method = "lm", color = "black", fill = "grey39") +
+  geom_smooth(method = "lm", color = "firebrick3", fill = NA) +
   geom_point(shape = 1) +
   labs(title = title, x = "Teachers", y = "Price")
 ```
@@ -1407,7 +1419,7 @@ house_prepared %>%
 title <- "Scatter plot of the model 2"
 house_prepared %>%
   ggplot(aes(poor_prop, price)) +
-  geom_smooth(method = "lm", color = "black", fill = "grey39") +
+  geom_smooth(method = "lm", color = "firebrick3", fill = NA) +
   geom_point(shape = 1) +
   labs(title = title, x = "Poor people proportion", y = "Price")
 ```
@@ -1459,31 +1471,31 @@ lm.multiple_quantitative %>% summary() %>% coefficients() %>% my_kable(full_widt
 <tbody>
   <tr>
    <td style="text-align:left;"> (Intercept) </td>
-   <td style="text-align:right;"> 6.64 </td>
-   <td style="text-align:right;"> 3.00 </td>
-   <td style="text-align:right;"> 2.2 </td>
-   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 6.6416 </td>
+   <td style="text-align:right;"> 2.9960 </td>
+   <td style="text-align:right;"> 2.217 </td>
+   <td style="text-align:right;"> 0.0271 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> age </td>
-   <td style="text-align:right;"> 0.04 </td>
-   <td style="text-align:right;"> 0.01 </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.0400 </td>
+   <td style="text-align:right;"> 0.0113 </td>
+   <td style="text-align:right;"> 3.545 </td>
+   <td style="text-align:right;"> 0.0004 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> teachers </td>
-   <td style="text-align:right;"> 1.15 </td>
-   <td style="text-align:right;"> 0.13 </td>
-   <td style="text-align:right;"> 9.1 </td>
-   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 1.1489 </td>
+   <td style="text-align:right;"> 0.1261 </td>
+   <td style="text-align:right;"> 9.109 </td>
+   <td style="text-align:right;"> 0.0000 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> poor_prop </td>
-   <td style="text-align:right;"> -0.92 </td>
-   <td style="text-align:right;"> 0.05 </td>
-   <td style="text-align:right;"> -19.8 </td>
-   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> -0.9172 </td>
+   <td style="text-align:right;"> 0.0462 </td>
+   <td style="text-align:right;"> -19.837 </td>
+   <td style="text-align:right;"> 0.0000 </td>
   </tr>
 </tbody>
 </table>
@@ -1518,7 +1530,7 @@ summary(lm.multiple_quantitative)$r.squared
 ```
 
 ```
-## [1] 0.62
+## [1] 0.6191
 ```
 
 ```r
@@ -1526,10 +1538,10 @@ summary(lm.multiple_quantitative)$adj.r.squared
 ```
 
 ```
-## [1] 0.62
+## [1] 0.6168
 ```
 
-Concerning the standard $R^2$, the adjusted coefficient of determination is slightly lower, though not significantly. We'll get the most of it afterward.
+Concerning the standard $R^2$, the adjusted coefficient of determination is practically the same. We'll get the most of this metric afterward.
 
 ## Extension of the model with the variables `room_num`, `n_hos_beds` and `n_hot_rooms`
 
@@ -1572,14 +1584,18 @@ summary(lm.multiple_quantitative_extended)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ##
-## Residual standard error: 5.2 on 499 degrees of freedom
+## Residual standard error: 5.16 on 499 degrees of freedom
 ## Multiple R-squared:  0.688,	Adjusted R-squared:  0.685
 ## F-statistic:  184 on 6 and 499 DF,  p-value: <2e-16
 ```
 
-+ The _t_ statistic and their associated p-values obtained for `age`, `n_hos_beds`, and `n_hot_rooms` tell us that these variables have a coefficient equal to zero in the model.
++ The _t_ statistic and their associated p-values obtained for `age` and `n_hot_rooms` tell us that these variables are not significant for the model.
 
-By introducing more explanatory variables than the previous model, it is of interest to use $R_a^2$ to compare them.
+However, one thing is that variables are not significant, and the other is that the model is not significant.
+
+In the same inference approach of the modeling process, we use the _F-statistic_ to check if a model significantly explains the response variable `Y` or not. If we get an _F_ close to one, it means that the model is not significant. But here, we got an _F_ way higher than one and a small _p_. So, we can consider that our variables are significantly linearly correlated with our response variable.
+
+As we introduced more explanatory variables than the previous model, it is of interest to use $R_a^2$ to compare them.
 
 
 ```r
@@ -1587,7 +1603,7 @@ summary(lm.multiple_quantitative)$adj.r.squared
 ```
 
 ```
-## [1] 0.62
+## [1] 0.6168
 ```
 
 ```r
@@ -1595,10 +1611,10 @@ summary(lm.multiple_quantitative_extended)$adj.r.squared
 ```
 
 ```
-## [1] 0.68
+## [1] 0.6845
 ```
 
-In this case, we see an increase of more than 7% in the $R^2$ of the model.
+In this case, we see an increase of about 6% in the $R^2$ of the model.
 
 # Multiple linear regression models (quantitative and qualitative regressors)
 
@@ -1617,19 +1633,19 @@ Is the new model significantly better?
 
 
 ```r
-summary(lm.multiple_quantitative)$adj.r.squared
-```
-
-```
-## [1] 0.62
-```
-
-```r
 summary(lm.multiple_quantitative_extended)$adj.r.squared
 ```
 
 ```
-## [1] 0.68
+## [1] 0.6845
+```
+
+```r
+summary(lm.multiple_quanti_quali)$adj.r.squared
+```
+
+```
+## [1] 0.6882
 ```
 
 In this case, the improvement obtained, comparing the adjusted $R^2$, is very small.
@@ -1638,11 +1654,9 @@ In this case, the improvement obtained, comparing the adjusted $R^2$, is very sm
 
 Now, let's imagine that we want to predict a new house's price with the following characteristics.
 
-**_`age`=70, `teachers`=15, `poor_prop`=15, `room_num`=8, `n_hos_beds`=8, `n_hot_rooms`=100_**
+**`age = 70`, `teachers = 15`, `poor_prop = 15`, `room_num = 8`, `n_hos_beds = 8`, `n_hot_rooms = 100`**
 
-**_[REVIEW: Is it the best one?]_**
-
-I'll use the model fitted with quantitative variables to perform the prediction. So far, it's the best one.
+I'll use the model fitted with quantitative and qualitative variables to perform the prediction. So far, it's the best one.
 
 
 ```r
@@ -1674,9 +1688,9 @@ predict(
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:right;"> 23 </td>
-   <td style="text-align:right;"> 21 </td>
-   <td style="text-align:right;"> 26 </td>
+   <td style="text-align:right;"> 23.09 </td>
+   <td style="text-align:right;"> 20.52 </td>
+   <td style="text-align:right;"> 25.66 </td>
   </tr>
 </tbody>
 </table>
@@ -1698,7 +1712,7 @@ title <- "Residuals vs. Fitted"
 residuals_df %>%
   ggplot(aes(y_pred, residuals)) +
   geom_smooth(color = "firebrick3", method = "lm", se = F) +
-  geom_point(shape = 1) +
+  geom_point(shape = 1, color = "#333333") +
   labs(title = title, x = "Fitted Values", y = "Residuals")
 ```
 
@@ -1716,7 +1730,7 @@ I check that the mean residue is zero and perform a histogram and hypothesis con
 ```r
 residuals_df %>%
   ggplot(aes(residuals)) +
-  geom_histogram(bins = 30, fill = "grey79", colour = "grey19") +
+  geom_histogram(bins = 30, fill = "#333333", colour = "white") +
   labs(title = "Residuals distribution", x = "Residuals",  y = "Count")
 ```
 
@@ -1763,219 +1777,219 @@ house_prepared %>% filter(row_number() %in% residuals_outliers) %>% my_kable() %
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 0.63 </td>
-   <td style="text-align:right;"> 5.0 </td>
+   <td style="text-align:right;"> 50.0 </td>
+   <td style="text-align:right;"> 48.10 </td>
+   <td style="text-align:right;"> 0.631 </td>
+   <td style="text-align:right;"> 4.970 </td>
    <td style="text-align:right;"> 100.0 </td>
-   <td style="text-align:right;"> 1.5 </td>
+   <td style="text-align:right;"> 1.47 </td>
    <td style="text-align:right;"> 1.11 </td>
-   <td style="text-align:right;"> 1.5 </td>
+   <td style="text-align:right;"> 1.52 </td>
    <td style="text-align:right;"> 1.23 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 3.3 </td>
+   <td style="text-align:right;"> 19.8 </td>
+   <td style="text-align:right;"> 3.26 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 9.7 </td>
-   <td style="text-align:right;"> 117 </td>
+   <td style="text-align:right;"> 9.700 </td>
+   <td style="text-align:right;"> 117.3 </td>
    <td style="text-align:left;"> River </td>
    <td style="text-align:right;"> 41 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0624 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 18 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 0.60 </td>
-   <td style="text-align:right;"> 4.6 </td>
+   <td style="text-align:right;"> 17.9 </td>
+   <td style="text-align:right;"> 48.10 </td>
+   <td style="text-align:right;"> 0.597 </td>
+   <td style="text-align:right;"> 4.628 </td>
    <td style="text-align:right;"> 100.0 </td>
-   <td style="text-align:right;"> 1.8 </td>
+   <td style="text-align:right;"> 1.77 </td>
    <td style="text-align:right;"> 1.54 </td>
-   <td style="text-align:right;"> 1.8 </td>
+   <td style="text-align:right;"> 1.78 </td>
    <td style="text-align:right;"> 1.13 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 34.4 </td>
+   <td style="text-align:right;"> 19.8 </td>
+   <td style="text-align:right;"> 34.37 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 8.4 </td>
-   <td style="text-align:right;"> 151 </td>
+   <td style="text-align:right;"> 8.358 </td>
+   <td style="text-align:right;"> 151.4 </td>
    <td style="text-align:left;"> None </td>
    <td style="text-align:right;"> 40 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0587 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:right;"> 36 </td>
-   <td style="text-align:right;"> 0.50 </td>
-   <td style="text-align:right;"> 6.2 </td>
+   <td style="text-align:right;"> 50.0 </td>
+   <td style="text-align:right;"> 36.20 </td>
+   <td style="text-align:right;"> 0.504 </td>
+   <td style="text-align:right;"> 6.208 </td>
    <td style="text-align:right;"> 83.0 </td>
-   <td style="text-align:right;"> 3.1 </td>
+   <td style="text-align:right;"> 3.13 </td>
    <td style="text-align:right;"> 2.61 </td>
-   <td style="text-align:right;"> 3.0 </td>
+   <td style="text-align:right;"> 2.95 </td>
    <td style="text-align:right;"> 2.88 </td>
-   <td style="text-align:right;"> 23 </td>
-   <td style="text-align:right;"> 4.6 </td>
+   <td style="text-align:right;"> 22.6 </td>
+   <td style="text-align:right;"> 4.63 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 7.5 </td>
-   <td style="text-align:right;"> 117 </td>
+   <td style="text-align:right;"> 7.500 </td>
+   <td style="text-align:right;"> 117.3 </td>
    <td style="text-align:left;"> River </td>
    <td style="text-align:right;"> 20 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0570 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:right;"> 34 </td>
-   <td style="text-align:right;"> 0.65 </td>
-   <td style="text-align:right;"> 6.2 </td>
+   <td style="text-align:right;"> 50.0 </td>
+   <td style="text-align:right;"> 33.97 </td>
+   <td style="text-align:right;"> 0.647 </td>
+   <td style="text-align:right;"> 6.208 </td>
    <td style="text-align:right;"> 86.9 </td>
-   <td style="text-align:right;"> 2.1 </td>
+   <td style="text-align:right;"> 2.09 </td>
    <td style="text-align:right;"> 1.53 </td>
-   <td style="text-align:right;"> 1.8 </td>
+   <td style="text-align:right;"> 1.83 </td>
    <td style="text-align:right;"> 1.76 </td>
-   <td style="text-align:right;"> 27 </td>
-   <td style="text-align:right;"> 5.1 </td>
+   <td style="text-align:right;"> 27.0 </td>
+   <td style="text-align:right;"> 5.12 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 8.6 </td>
-   <td style="text-align:right;"> 117 </td>
+   <td style="text-align:right;"> 8.600 </td>
+   <td style="text-align:right;"> 117.3 </td>
    <td style="text-align:left;"> River </td>
    <td style="text-align:right;"> 54 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0552 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 0.63 </td>
-   <td style="text-align:right;"> 6.7 </td>
+   <td style="text-align:right;"> 50.0 </td>
+   <td style="text-align:right;"> 48.10 </td>
+   <td style="text-align:right;"> 0.631 </td>
+   <td style="text-align:right;"> 6.683 </td>
    <td style="text-align:right;"> 96.8 </td>
-   <td style="text-align:right;"> 1.6 </td>
+   <td style="text-align:right;"> 1.55 </td>
    <td style="text-align:right;"> 1.28 </td>
-   <td style="text-align:right;"> 1.6 </td>
+   <td style="text-align:right;"> 1.65 </td>
    <td style="text-align:right;"> 0.94 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 3.7 </td>
+   <td style="text-align:right;"> 19.8 </td>
+   <td style="text-align:right;"> 3.73 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 6.7 </td>
-   <td style="text-align:right;"> 117 </td>
+   <td style="text-align:right;"> 6.700 </td>
+   <td style="text-align:right;"> 117.3 </td>
    <td style="text-align:left;"> River </td>
    <td style="text-align:right;"> 58 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.07 </td>
+   <td style="text-align:right;"> 0.0675 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 0.63 </td>
-   <td style="text-align:right;"> 7.0 </td>
+   <td style="text-align:right;"> 50.0 </td>
+   <td style="text-align:right;"> 48.10 </td>
+   <td style="text-align:right;"> 0.631 </td>
+   <td style="text-align:right;"> 7.016 </td>
    <td style="text-align:right;"> 97.5 </td>
-   <td style="text-align:right;"> 1.4 </td>
+   <td style="text-align:right;"> 1.40 </td>
    <td style="text-align:right;"> 0.92 </td>
-   <td style="text-align:right;"> 1.2 </td>
+   <td style="text-align:right;"> 1.20 </td>
    <td style="text-align:right;"> 1.28 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 3.0 </td>
+   <td style="text-align:right;"> 19.8 </td>
+   <td style="text-align:right;"> 2.96 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 10.1 </td>
-   <td style="text-align:right;"> 117 </td>
+   <td style="text-align:right;"> 10.100 </td>
+   <td style="text-align:right;"> 117.3 </td>
    <td style="text-align:left;"> None </td>
    <td style="text-align:right;"> 46 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0592 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 0.63 </td>
-   <td style="text-align:right;"> 6.2 </td>
+   <td style="text-align:right;"> 50.0 </td>
+   <td style="text-align:right;"> 48.10 </td>
+   <td style="text-align:right;"> 0.631 </td>
+   <td style="text-align:right;"> 6.216 </td>
    <td style="text-align:right;"> 100.0 </td>
-   <td style="text-align:right;"> 1.4 </td>
+   <td style="text-align:right;"> 1.38 </td>
    <td style="text-align:right;"> 0.95 </td>
-   <td style="text-align:right;"> 1.4 </td>
+   <td style="text-align:right;"> 1.36 </td>
    <td style="text-align:right;"> 0.99 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 9.5 </td>
+   <td style="text-align:right;"> 19.8 </td>
+   <td style="text-align:right;"> 9.53 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 9.8 </td>
-   <td style="text-align:right;"> 117 </td>
+   <td style="text-align:right;"> 9.800 </td>
+   <td style="text-align:right;"> 117.3 </td>
    <td style="text-align:left;"> None </td>
    <td style="text-align:right;"> 25 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0609 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 0.67 </td>
-   <td style="text-align:right;"> 5.9 </td>
+   <td style="text-align:right;"> 50.0 </td>
+   <td style="text-align:right;"> 48.10 </td>
+   <td style="text-align:right;"> 0.668 </td>
+   <td style="text-align:right;"> 5.875 </td>
    <td style="text-align:right;"> 89.6 </td>
-   <td style="text-align:right;"> 1.1 </td>
+   <td style="text-align:right;"> 1.13 </td>
    <td style="text-align:right;"> 1.01 </td>
-   <td style="text-align:right;"> 1.2 </td>
+   <td style="text-align:right;"> 1.25 </td>
    <td style="text-align:right;"> 1.12 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 8.9 </td>
+   <td style="text-align:right;"> 19.8 </td>
+   <td style="text-align:right;"> 8.88 </td>
    <td style="text-align:left;"> NO </td>
-   <td style="text-align:right;"> 10.8 </td>
-   <td style="text-align:right;"> 117 </td>
+   <td style="text-align:right;"> 10.800 </td>
+   <td style="text-align:right;"> 117.3 </td>
    <td style="text-align:left;"> None </td>
    <td style="text-align:right;"> 57 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0645 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:right;"> 41 </td>
-   <td style="text-align:right;"> 0.49 </td>
-   <td style="text-align:right;"> 5.4 </td>
+   <td style="text-align:right;"> 23.7 </td>
+   <td style="text-align:right;"> 40.59 </td>
+   <td style="text-align:right;"> 0.489 </td>
+   <td style="text-align:right;"> 5.412 </td>
    <td style="text-align:right;"> 9.8 </td>
-   <td style="text-align:right;"> 3.7 </td>
+   <td style="text-align:right;"> 3.68 </td>
    <td style="text-align:right;"> 3.48 </td>
-   <td style="text-align:right;"> 3.7 </td>
+   <td style="text-align:right;"> 3.67 </td>
    <td style="text-align:right;"> 3.53 </td>
-   <td style="text-align:right;"> 21 </td>
-   <td style="text-align:right;"> 29.6 </td>
+   <td style="text-align:right;"> 21.4 </td>
+   <td style="text-align:right;"> 29.55 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 5.7 </td>
-   <td style="text-align:right;"> 112 </td>
+   <td style="text-align:right;"> 5.674 </td>
+   <td style="text-align:right;"> 111.9 </td>
    <td style="text-align:left;"> None </td>
    <td style="text-align:right;"> 21 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0561 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 49 </td>
-   <td style="text-align:right;"> 34 </td>
-   <td style="text-align:right;"> 0.65 </td>
-   <td style="text-align:right;"> 6.2 </td>
+   <td style="text-align:right;"> 48.8 </td>
+   <td style="text-align:right;"> 33.97 </td>
+   <td style="text-align:right;"> 0.647 </td>
+   <td style="text-align:right;"> 6.208 </td>
    <td style="text-align:right;"> 91.5 </td>
-   <td style="text-align:right;"> 2.5 </td>
+   <td style="text-align:right;"> 2.55 </td>
    <td style="text-align:right;"> 2.04 </td>
-   <td style="text-align:right;"> 2.4 </td>
+   <td style="text-align:right;"> 2.39 </td>
    <td style="text-align:right;"> 2.17 </td>
-   <td style="text-align:right;"> 27 </td>
-   <td style="text-align:right;"> 5.9 </td>
+   <td style="text-align:right;"> 27.0 </td>
+   <td style="text-align:right;"> 5.91 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 10.1 </td>
-   <td style="text-align:right;"> 154 </td>
+   <td style="text-align:right;"> 10.076 </td>
+   <td style="text-align:right;"> 153.9 </td>
    <td style="text-align:left;"> River </td>
    <td style="text-align:right;"> 24 </td>
    <td style="text-align:left;"> YES </td>
-   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.0551 </td>
    <td style="text-align:right;"> 0 </td>
   </tr>
 </tbody>
 </table></div>
 
-We see that practically all cases with `price = 50` appear as atypical cases. Other outliers come out among the variables where we couldn't establish a clear boundary for atypical cases, e.g., for `teachers > 27 and poor_prop > 29` (I mean [here](missing-values)).
+We see that practically all cases with `price = 50` appear as atypical cases. Other outliers come out among the variables where we couldn't establish a clear boundary for atypical cases, e.g., for `teachers > 27 and poor_prop > 29` (as we saw [here](missing-values)).
 
 It will be interesting to see what happens if we adjust the model again, leaving out the outliers detected by analyzing residuals. How do you think that this will affect the model's performance?
 
@@ -1989,10 +2003,12 @@ lm(
 ```
 
 ```
-## [1] 0.78
+## [1] 0.7768
 ```
 
 The $R^2$ of the model improves by almost 10 points regarding the model that includes the outliers!
+
+This phenomenon is known as garbage-in garbage-out in the Machine Learning field. If you feed your model with poor quality data, you'll get a low-quality model. The best thing you can do if you want to use your model for prediction is retraining it without these noisy observations.
 
 # Takeaways
 
@@ -2002,3 +2018,5 @@ This is what we have learned in this blog post:
 + Be aware of the outliers. Give the data processing step the care that it deserves. Recheck them when you go through the validation of the model's assumptions.
 + Check the model assumptions (independent variable or residuals normally distributed and homoscedasticity) to ensure that what you are doing is right.
 + Test different variable combinations to see how you can improve your model's performance.
+
+That's it for this post. I hope you have enjoyed it. If you have any comments or suggestions, do not hesitate to contact me!
