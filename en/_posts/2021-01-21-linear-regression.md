@@ -2,10 +2,7 @@
 title: "Linear Regression with R"
 author: "Carlos Dávila Luelmo"
 date: "2021-01-21"
-output:
-  html_document:
-    keep_md: true
-    tags: [R, Linear Regression, Statistics, Inference, Housing]
+tags: [R, Linear Regression, Statistics, Inference, Housing]
 ---
 
 
