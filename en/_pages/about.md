@@ -13,14 +13,10 @@ redirect_from:
   - /about.html
 ---
 
-👋 Welcome!
+👋Welcome!
 
-My name is Carlos Dávila and I'm currently a Data Consultant.
+My name is Carlos Dávila. I'm a Data Scientist with two years of experience doing 📊**Data Analysis** and 📈 **Data Science**.
 
-I made a career transition from a background in Technical Architecture to Data Science. It may seem unconnected, but along the way, all of my experience and recent training have been related to data.
+I made a career transition from a background in Technical Architecture to this fascinating field. I'm also very into 🌍**Sustainability**.
 
-I believe that the things that lead me to follow this path are the willingness to learn, motivation, be open-minded and tons of patience to deal with errors in code.
-
-I do **Data Science and Analysis**. Also, I'm very into **Sustainability**.
-
-You can find some notes about my learning journey and some thoughts in my blog.
+You'll find some notes about my learning journey in my blog.
