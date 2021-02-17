@@ -2,7 +2,7 @@
 title: "End-2-end Machine Learning Project with Python"
 author: "Carlos Dávila Luelmo"
 date: "2021-01-21"
-tags: [R, Linear Regression, Statistics, Inference, Housing]
+tags: [python, machine learning, energy, sustainability, buildings]
 ---
 
 The goal of this exercise is to go through the Machine Learning modeling process using Python.
